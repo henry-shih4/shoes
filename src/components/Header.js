@@ -18,11 +18,12 @@ export default function Header() {
 
   return (
     <>
+      {/*Home page Header*/}
       {hideHeader ? (
         <div className="absolute top-0 left-0 m-4 gap-x-4 flex items-center">
           <img
             className="w-[30px] "
-            src="./images/icon-menu-white.svg"
+            src="/images/icon-menu.svg"
             onClick={() => {
               setShowNav(true);
             }}
@@ -32,6 +33,8 @@ export default function Header() {
           </div>
         </div>
       ) : null}
+
+      {/* Navbar*/}
       <div
         className={
           showNav
@@ -48,7 +51,7 @@ export default function Header() {
           >
             <img
               className="hover:scale-105 duration-300"
-              src="./images/icon-close.svg"
+              src="/images/icon-close.svg"
             />
           </div>
           <ul className="flex flex-col gap-y-4 font-bold">
@@ -62,7 +65,7 @@ export default function Header() {
             </li>
             <li
               onClick={() => {
-                navigate("/products");
+                navigate("/collection");
                 setShowNav(false);
               }}
             >
@@ -74,29 +77,30 @@ export default function Header() {
         </div>
       </div>
 
+      {/*Header 2 for all other pages*/}
       <div
         className={
           hideHeader == false
-            ? "absolute w-full h-24 flex justify-center items-center bg-white"
+            ? " w-full h-24 flex justify-center items-center bg-white"
             : "hidden"
         }
       >
-        <div className="w-[80%] h-full border-b-2 border-slate-200 flex justify-between items-center">
-          <div className="flex items-center gap-x-8">
-            <div className="md:hidden  hover:cursor-pointer">
+        <div className="relative w-[80%] h-full border-b-2 border-slate-200 flex justify-between items-center md:static">
+          <div className="flex items-center md:gap-x-8">
+            <div className="min-w-[36px] md:hidden  hover:cursor-pointer">
               <img
                 className={
                   showNav
                     ? "rotate-90 hover:scale-110 transition-all duration-500"
                     : "hover:scale-110 transition-all duration-500"
                 }
-                src="./images/icon-menu.svg"
+                src="/images/icon-menu.svg"
                 onClick={() => {
                   setShowNav(true);
                 }}
               />
             </div>
-            <div className="mx-2">
+            <div className="mx-2 min-w-[100px]">
               <img src="/images/logo.svg" />
             </div>
             <div>
@@ -110,7 +114,7 @@ export default function Header() {
                 </li>
                 <li
                   onClick={() => {
-                    navigate("/products");
+                    navigate("/collection");
                   }}
                 >
                   Collections
@@ -121,8 +125,9 @@ export default function Header() {
               </ul>
             </div>
           </div>
-          <div className="flex gap-x-4 relative">
+          <div className="flex gap-x-4 static md:relative">
             <div
+              className="min-h-[36px] h-[36px] min-w-[36px]"
               onClick={() => {
                 if (showCart) {
                   setShowCart(false);
@@ -132,9 +137,20 @@ export default function Header() {
               <img src="/images/cart.svg" />
             </div>
             <div>
-              <img className="h-[36px]" src="/images/image-avatar.png" />
+              <img
+                className="min-h-[36px] h-[36px] w-[36px] min-w-[36px]"
+                src="/images/image-avatar.png"
+              />
             </div>
-            <Cart showCart={showCart} />
+            <div
+              className={
+                showCart
+                  ? "absolute top-[200%] left-[25%] md:top-[120%] md:-left-[150%] h-max w-[280px] shadow-xl bg-white translate-y-0 transition-all duration-500 z-10 rounded-lg"
+                  : "absolute md:top-[120%] md:-left-[150%] h-max w-[280px] shadow-xl bg-white -translate-y-[15%]  hidden  z-10 rounded-lg"
+              }
+            >
+              <Cart showCart={showCart} />
+            </div>
           </div>
         </div>
       </div>

@@ -16,7 +16,7 @@ export default function Home() {
             </div>
             <div className="text-2xl"></div>
             <div>
-              <p className="text-base italic text-shadow-lg shadow-slate-600 md:shadow-white md:text-shadow-none">
+              <p className="text-sm italic text-shadow-lg shadow-slate-600 md:shadow-white md:text-shadow-none">
                 Our athletic shoes are designed with advanced cushioning systems
                 and support features to provide maximum comfort and stability
                 during intense physical activity. Whether you're running,
@@ -24,11 +24,11 @@ export default function Home() {
                 best
               </p>
             </div>
-            <div className="m-4 flex justify-center items-center">
+            <div className="m-4 flex justify-center items-center md:justify-start">
               <button
                 className="w-[140px] h-[48px] bg-orange-400 rounded-lg font-bebas text-xl tracking-wide border-slate-300 border-2"
                 onClick={() => {
-                  navigate("/products");
+                  navigate("/collection");
                 }}
               >
                 SHOP NOW
