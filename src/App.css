@@ -1,0 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Raleway&display=swap");
+
+li {
+  cursor: pointer;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+}

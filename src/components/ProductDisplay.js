@@ -5,11 +5,10 @@ export default function ProductDisplay() {
   const [quantity, setQuantity] = useState(0);
   const [cart, setCart] = useState([]);
 
-
   return (
     <>
       <div className="flex flex-col justify-center items-center min-h-screen w-[75%] m-auto my-4 gap-y-4 md:flex-row md:gap-x-4">
-        <div className="h-3/4  flex flex-col justify-center items-center w-1/2 min-w-[320px] gap-y-6">
+        <div className="h-3/4 flex flex-col justify-center items-center w-1/2 min-w-[320px] gap-y-6">
           <div className="h-max w-3/5 min-w-[300px]">
             <img
               className="min-h-[300px] rounded-2xl"
