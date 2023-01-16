@@ -1,6 +1,6 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-import Cart from "./Cart.js";
+import CartDisplay from "./CartDisplay";
 
 export default function Header() {
   const [showNav, setShowNav] = useState(false);
@@ -149,7 +149,7 @@ export default function Header() {
                   : "absolute md:top-[120%] md:-left-[150%] h-max w-[280px] shadow-xl bg-white -translate-y-[15%]  hidden  z-10 rounded-lg"
               }
             >
-              <Cart showCart={showCart} />
+              <CartDisplay showCart={showCart} />
             </div>
           </div>
         </div>

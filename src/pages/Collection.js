@@ -1,6 +1,6 @@
 
 import { useNavigate } from "react-router-dom";
-import { shoeCollection } from "./shoeCollection";
+import { shoeCollection } from "../components/shoeCollection";
 
 export default function Collection() {
   const navigate = useNavigate();

@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { shoeCollection } from "./shoeCollection";
-import Cart from "./Cart";
+import { shoeCollection } from "../components/shoeCollection";
+import { CartContext } from "../components/CartContext";
 
 export default function ProductDisplay() {
   const [activeImage, setActiveImage] = useState("1");
@@ -9,6 +9,17 @@ export default function ProductDisplay() {
   const [cart, setCart] = useState([]);
   const params = useParams();
   const [currentShoe, setCurrentShoe] = useState([]);
+  const [
+    cartItems,
+    addItemToCart,
+    removeItemFromCart,
+    removeOneFromCart,
+    getTotalCost,
+  ] = useContext(CartContext);
+
+  useEffect(() => {
+    console.log(cartItems);
+  });
 
   useEffect(() => {
     let shoe = shoeCollection.filter((shoe) => {
@@ -16,44 +27,6 @@ export default function ProductDisplay() {
     });
     setCurrentShoe(shoe[0]);
   }, []);
-
-  useEffect(() => {
-    console.log(cart);
-  }, [cart]);
-
-  useEffect(() => {
-    console.log(activeImage);
-    // console.log(currentShoe);
-  });
-
-  function addToCart(product) {
-    let exist = cart.find(
-      (item) => item.variation === activeImage && item.id === product.id
-    );
-    if (exist) {
-      console.log(exist.variation);
-      setCart(
-        cart.map((item) =>
-          item.variation === activeImage && item.id === product.id
-            ? {
-                ...exist,
-                quantity: exist.quantity + 1,
-              }
-            : item
-        )
-      );
-    } else {
-      setCart([
-        ...cart,
-        {
-          name: product.name,
-          id: product.id,
-          variation: activeImage,
-          quantity: 1,
-        },
-      ]);
-    }
-  }
 
   return (
     <>
@@ -80,7 +53,7 @@ export default function ProductDisplay() {
                       ? "opacity-50 h-full w-full rounded-xl"
                       : "h-full w-full rounded-xl"
                   }
-                  src={currentShoe.main_image1_thumbnail}
+                  src={currentShoe.main_image1}
                   onClick={() => {
                     setActiveImage("1");
                   }}
@@ -99,7 +72,7 @@ export default function ProductDisplay() {
                       ? "opacity-50 h-full w-full rounded-xl"
                       : "h-full w-full rounded-xl"
                   }
-                  src={currentShoe.main_image2_thumbnail}
+                  src={currentShoe.main_image2}
                   onClick={() => {
                     setActiveImage("2");
                   }}
@@ -118,7 +91,7 @@ export default function ProductDisplay() {
                       ? "opacity-50 h-full w-full rounded-xl"
                       : "h-full w-full rounded-xl"
                   }
-                  src={currentShoe.main_image3_thumbnail}
+                  src={currentShoe.main_image3}
                   onClick={() => {
                     setActiveImage("3");
                   }}
@@ -137,7 +110,7 @@ export default function ProductDisplay() {
                       ? "opacity-50 h-full w-full rounded-xl"
                       : "h-full w-full rounded-xl"
                   }
-                  src={currentShoe.main_image4_thumbnail}
+                  src={currentShoe.main_image4}
                   onClick={() => {
                     setActiveImage("4");
                   }}
@@ -197,15 +170,21 @@ export default function ProductDisplay() {
                     <button
                       className="flex items-center justify-center w-full font-bold space-x-2 bg-orange-400  rounded-xl hover:cursor-pointer"
                       onClick={() => {
-                        addToCart(currentShoe);
+                        if (quantity > 0) {
+                          addItemToCart({
+                            name: currentShoe.name,
+                            id: currentShoe.id,
+                            variation: activeImage,
+                            image: currentShoe[`main_image${activeImage}`],
+                            quantity: quantity,
+                            price: currentShoe.price,
+                          });
+                        }
                       }}
                     >
                       <img src="/images/cart-white.svg" />
                       <div>Add to cart</div>
                     </button>
-                  </div>
-                  <div className="">
-                    <Cart className="hidden" cart={cart} />
                   </div>
                 </div>
               </div>
