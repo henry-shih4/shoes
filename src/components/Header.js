@@ -127,7 +127,7 @@ export default function Header() {
           </div>
           <div className="flex gap-x-4 static md:relative">
             <div
-              className="min-h-[36px] h-[36px] min-w-[36px]"
+              className="min-h-[36px] h-[36px] min-w-[36px] hover:cursor-pointer"
               onClick={() => {
                 if (showCart) {
                   setShowCart(false);
