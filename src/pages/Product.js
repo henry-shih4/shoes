@@ -10,6 +10,7 @@ export default function ProductDisplay() {
   const params = useParams();
   const [currentShoe, setCurrentShoe] = useState([]);
   const [
+    totalCost,
     cartItems,
     addItemToCart,
     removeItemFromCart,

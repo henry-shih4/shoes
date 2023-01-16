@@ -4,13 +4,19 @@ import { CartContext } from "../components/CartContext";
 
 export default function CartDisplay(props) {
   const { showCart } = props;
+
   const [
+    totalCost,
     cartItems,
     addItemToCart,
     removeItemFromCart,
     removeOneFromCart,
     getTotalCost,
   ] = useContext(CartContext);
+
+  useEffect(() => {
+    getTotalCost();
+  }, [cartItems]);
 
   return (
     <>
@@ -23,8 +29,8 @@ export default function CartDisplay(props) {
               ? cartItems.map((item, index) => {
                   return (
                     <>
-                      <div className="flex px-3 justify-between" key={index}>
-                        <div className="flex justify-center items-center 1/3-full">
+                      <div className="flex px-3 justify-center" key={index}>
+                        <div className="flex justify-center items-center w-1/3">
                           <img
                             className="h-[80px] rounded-lg"
                             src={item.image}
@@ -46,14 +52,24 @@ export default function CartDisplay(props) {
                             </div>
                           </div>
                         </div>
+                        <div
+                          className=""
+                          onClick={() => {
+                            removeItemFromCart(index);
+                          }}
+                        >
+                          <img src="/images/icon-close.svg" />
+                        </div>
                       </div>
-                      <div>{}</div>
                     </>
                   );
                 })
               : "Cart is empty."}
           </div>
           <div>
+            <div>
+              Total: <span className="font-bold">{totalCost}</span>
+            </div>
             <button>Checkout</button>
           </div>
         </div>

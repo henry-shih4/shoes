@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <>
       <div className="flex justify-start items-center h-screen">
-        <div className="absolute w-full h-full bg-main bg-cover bg-center bg-no-repeat -z-10 brightness-75 md:brightness-100 m-0"></div>
+        <div className="absolute w-full h-full bg-main bg-cover bg-center bg-no-repeat -z-10 brightness-75 md:brightness-100 "></div>
         <div className="w-full min-w-1/2 h-3/4 flex justify-center items-center max-h-[600px] md:w-1/2 md:items-start">
           <div className="w-3/4 flex flex-col rounded-xl gap-y-4 text-white text-center md:text-left">
             <div className=" font-bold text-3xl tracking-wide font-raleway">

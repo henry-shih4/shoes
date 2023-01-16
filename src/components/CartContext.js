@@ -5,6 +5,7 @@ const CartContext = createContext();
 
 function CartProvider(props) {
   const [cartItems, setCartItems] = useState([]);
+  const [totalCost, setTotalCost] = useState(0);
 
   function addItemToCart(product) {
     let exist = cartItems.find(
@@ -27,15 +28,23 @@ function CartProvider(props) {
     }
   }
 
-  function removeItemFromCart() {}
+  function removeItemFromCart(index) {
+    let filtered = cartItems.filter((item, i) => i !== index);
+    setCartItems(filtered);
+  }
 
   function removeOneFromCart() {}
 
-  function getTotalCost() {}
+  function getTotalCost() {
+    let cost = cartItems.map((item) => item.price * item.quantity);
+    let total = cost.reduce((sum, current) => sum + current, 0);
+    setTotalCost(total);
+  }
 
   return (
     <CartContext.Provider
       value={[
+        totalCost,
         cartItems,
         addItemToCart,
         removeItemFromCart,
