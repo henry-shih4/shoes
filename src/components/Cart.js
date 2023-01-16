@@ -10,7 +10,7 @@ export default function Cart(props) {
 
   return (
     <>
-      <div className={""}>
+      {/* <div className={""}>
         <div>
           <div className="p-4">Cart</div>
           <div className="w-full border border-slate-200"></div>
@@ -32,7 +32,7 @@ export default function Cart(props) {
             <button>Checkout</button>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

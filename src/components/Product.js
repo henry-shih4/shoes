@@ -18,29 +18,49 @@ export default function ProductDisplay() {
   }, []);
 
   useEffect(() => {
-    if (cart[0]) {
-      let exists = cart[0].filter((shoe) => {
-        return shoe.id === 2;
-      });
-      console.log(exists);
-    }
-    console.log(cart[0]);
+    console.log(cart);
+  }, [cart]);
+
+  useEffect(() => {
+    console.log(activeImage);
   });
 
   function addToCart() {
-    // if (cart[0]) {
-    //   cart[0].filter((item, index) => {
-    //     if (item.product_id === currentShoe.id) {
-    //       console.log("item exists");
-    //     }
-    //   });
-    // }
+    //   const exist =
+    //     cart[0] || [].find((item) => item["variation"] == activeImage);
+    //   console.log(exist);
+    //   if (exist) {
+    //     console.log("exists");
+    //     console.log(exist);
+    //     setCart(
+    //       cart.map((item) => {
+    //         console.log("update quantity");
+    //         return { ...exist, quantity: exist.quantity + 1 };
+    //       })
+    //     );
+    //   } else {
+    //     setCart([
+    //       ...cart,
+    //       {
+    //         product_name: currentShoe.name,
+    //         product_img: currentShoe[`main_image${activeImage}`],
+    //         product_id: params.id,
+    //         variation: activeImage,
+    //         quantity: 1,
+    //       },
+    //     ]);
+    //     console.log("add to cart");
+    //   }
 
     {
       if (quantity > 0) {
-        // console.log(
-        //   `adding product ${params.id}, variation ${activeImage} to cart`
-        // );
+        let exist =
+          cart[0] || [].find((item) => item["product_id"] === currentShoe.id);
+
+        if (exist) {
+          console.log("exists");
+          console.log(exist);
+        }
         setCart([
           ...cart,
           [
