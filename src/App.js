@@ -4,6 +4,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProductDisplay from "./components/Product";
 import Home from "./components/Home";
 import Collection from "./components/Collection";
+import { useState } from "react";
+
 function App() {
   return (
     <div className="App">

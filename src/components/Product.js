@@ -23,57 +23,35 @@ export default function ProductDisplay() {
 
   useEffect(() => {
     console.log(activeImage);
+    // console.log(currentShoe);
   });
 
-  function addToCart() {
-    //   const exist =
-    //     cart[0] || [].find((item) => item["variation"] == activeImage);
-    //   console.log(exist);
-    //   if (exist) {
-    //     console.log("exists");
-    //     console.log(exist);
-    //     setCart(
-    //       cart.map((item) => {
-    //         console.log("update quantity");
-    //         return { ...exist, quantity: exist.quantity + 1 };
-    //       })
-    //     );
-    //   } else {
-    //     setCart([
-    //       ...cart,
-    //       {
-    //         product_name: currentShoe.name,
-    //         product_img: currentShoe[`main_image${activeImage}`],
-    //         product_id: params.id,
-    //         variation: activeImage,
-    //         quantity: 1,
-    //       },
-    //     ]);
-    //     console.log("add to cart");
-    //   }
-
-    {
-      if (quantity > 0) {
-        let exist =
-          cart[0] || [].find((item) => item["product_id"] === currentShoe.id);
-
-        if (exist) {
-          console.log("exists");
-          console.log(exist);
-        }
-        setCart([
-          ...cart,
-          [
-            {
-              product_name: currentShoe.name,
-              product_img: currentShoe[`main_image${activeImage}`],
-              product_id: params.id,
-              variation: activeImage,
-              quantity: quantity,
-            },
-          ],
-        ]);
-      }
+  function addToCart(product) {
+    let exist = cart.find(
+      (item) => item.variation === activeImage && item.id === product.id
+    );
+    if (exist) {
+      console.log(exist.variation);
+      setCart(
+        cart.map((item) =>
+          item.variation === activeImage && item.id === product.id
+            ? {
+                ...exist,
+                quantity: exist.quantity + 1,
+              }
+            : item
+        )
+      );
+    } else {
+      setCart([
+        ...cart,
+        {
+          name: product.name,
+          id: product.id,
+          variation: activeImage,
+          quantity: 1,
+        },
+      ]);
     }
   }
 
@@ -219,7 +197,7 @@ export default function ProductDisplay() {
                     <button
                       className="flex items-center justify-center w-full font-bold space-x-2 bg-orange-400  rounded-xl hover:cursor-pointer"
                       onClick={() => {
-                        addToCart();
+                        addToCart(currentShoe);
                       }}
                     >
                       <img src="/images/cart-white.svg" />

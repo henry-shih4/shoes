@@ -8,7 +8,7 @@ export default function Collection() {
   return (
     <>
       <div className="flex justify-center items-center min-h-[calc(100vh-96px)] h-[calc(100vh-96px)] w-full">
-        <div className="h-max w-[90%] flex justify-center items-center flex-wrap">
+        <div className="min-h-max w-[90%] flex justify-center items-center flex-wrap">
           {shoeCollection.map((shoe) => {
             return (
               <>
