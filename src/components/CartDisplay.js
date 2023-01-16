@@ -29,9 +29,10 @@ export default function CartDisplay(props) {
               ? cartItems.map((item, index) => {
                   return (
                     <>
-                      <div className="flex px-3 justify-center" key={index}>
+                      <div key={index} className="flex px-3 justify-center">
                         <div className="flex justify-center items-center w-1/3">
                           <img
+                            alt={`item-${index}`}
                             className="h-[80px] rounded-lg"
                             src={item.image}
                           />
@@ -58,7 +59,7 @@ export default function CartDisplay(props) {
                             removeItemFromCart(index);
                           }}
                         >
-                          <img src="/images/icon-close.svg" />
+                          <img alt="close-icon" src="/images/icon-close.svg" />
                         </div>
                       </div>
                     </>

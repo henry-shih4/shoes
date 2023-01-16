@@ -18,16 +18,13 @@ export default function ProductDisplay() {
     getTotalCost,
   ] = useContext(CartContext);
 
-  useEffect(() => {
-    console.log(cartItems);
-  });
 
   useEffect(() => {
     let shoe = shoeCollection.filter((shoe) => {
       return shoe.id == params.id;
     });
     setCurrentShoe(shoe[0]);
-  }, []);
+  }, [params.id]);
 
   return (
     <>
@@ -38,22 +35,24 @@ export default function ProductDisplay() {
               <img
                 className="min-h-[300px] rounded-2xl"
                 src={currentShoe[`main_image${activeImage}`]}
+                alt={"selected-shoe"}
               />
             </div>
             <div className="flex justify-between items-center gap-x-4 w-3/5 min-w-[300px]">
               <div
                 className={
-                  activeImage == 1
+                  activeImage === "1"
                     ? "border-2 border-orange-400 min-h-[64px] min-w-[64px] max-h-[80px] max-w-[80px] rounded-xl "
                     : "min-h-[64px] min-w-[64px] max-h-[80px] max-w-[80px] rounded-xl"
                 }
               >
                 <img
                   className={
-                    activeImage == 1
+                    activeImage === "1"
                       ? "opacity-50 h-full w-full rounded-xl"
                       : "h-full w-full rounded-xl"
                   }
+                  alt="shoe-color-1"
                   src={currentShoe.main_image1}
                   onClick={() => {
                     setActiveImage("1");
@@ -62,17 +61,18 @@ export default function ProductDisplay() {
               </div>
               <div
                 className={
-                  activeImage == 2
+                  activeImage === "2"
                     ? "border-2 border-orange-400 min-h-[64px] min-w-[64px] max-h-[80px] max-w-[80px] rounded-xl "
                     : "min-h-[64px] min-w-[64px] max-h-[80px] max-w-[80px] rounded-xl"
                 }
               >
                 <img
                   className={
-                    activeImage == 2
+                    activeImage === "2"
                       ? "opacity-50 h-full w-full rounded-xl"
                       : "h-full w-full rounded-xl"
                   }
+                  alt="shoe-color-2"
                   src={currentShoe.main_image2}
                   onClick={() => {
                     setActiveImage("2");
@@ -81,17 +81,18 @@ export default function ProductDisplay() {
               </div>
               <div
                 className={
-                  activeImage == 3
+                  activeImage === "3"
                     ? "border-2 border-orange-400 min-h-[64px] min-w-[64px] max-h-[80px] max-w-[80px] rounded-xl "
                     : "min-h-[64px] min-w-[64px] max-h-[80px] max-w-[80px] rounded-xl"
                 }
               >
                 <img
                   className={
-                    activeImage == 3
+                    activeImage === "3"
                       ? "opacity-50 h-full w-full rounded-xl"
                       : "h-full w-full rounded-xl"
                   }
+                  alt="shoe-color-3"
                   src={currentShoe.main_image3}
                   onClick={() => {
                     setActiveImage("3");
@@ -100,17 +101,18 @@ export default function ProductDisplay() {
               </div>
               <div
                 className={
-                  activeImage == 4
+                  activeImage === "4"
                     ? "border-2 border-orange-400 min-h-[64px] min-w-[64px] max-h-[80px] max-w-[80px] rounded-xl "
                     : "min-h-[64px] min-w-[64px] max-h-[80px] max-w-[80px] rounded-xl"
                 }
               >
                 <img
                   className={
-                    activeImage == 4
+                    activeImage === "4"
                       ? "opacity-50 h-full w-full rounded-xl"
                       : "h-full w-full rounded-xl"
                   }
+                  alt="shoe-color-4"
                   src={currentShoe.main_image4}
                   onClick={() => {
                     setActiveImage("4");
@@ -155,7 +157,7 @@ export default function ProductDisplay() {
                         setQuantity(Math.max(quantity - 1, 0));
                       }}
                     >
-                      <img src="/images/icon-minus.svg" />
+                      <img alt="minus-icon" src="/images/icon-minus.svg" />
                     </button>
                     <div className="font-bold">{quantity}</div>
                     <button
@@ -164,7 +166,7 @@ export default function ProductDisplay() {
                         setQuantity(quantity + 1);
                       }}
                     >
-                      <img src="/images/icon-plus.svg" />
+                      <img alt="plus-icon" src="/images/icon-plus.svg" />
                     </button>
                   </div>
                   <div className="w-2/3 flex justify-center text-white ">
@@ -183,7 +185,7 @@ export default function ProductDisplay() {
                         }
                       }}
                     >
-                      <img src="/images/cart-white.svg" />
+                      <img alt="cart-icon" src="/images/cart-white.svg" />
                       <div>Add to cart</div>
                     </button>
                   </div>

@@ -10,7 +10,7 @@ export default function Header() {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname == "/") {
+    if (location.pathname === "/") {
       setHideHeader(true);
       console.log("home page");
     } else setHideHeader(false);
@@ -24,12 +24,13 @@ export default function Header() {
           <img
             className="w-[30px] "
             src="/images/icon-menu.svg"
+            alt="hamburger-menu-icon"
             onClick={() => {
               setShowNav(true);
             }}
           />
           <div className="mx-2">
-            <img src="/images/logo.svg" />
+            <img alt="company-logo" src="/images/logo.svg" />
           </div>
         </div>
       ) : null}
@@ -50,6 +51,7 @@ export default function Header() {
             }}
           >
             <img
+              alt="close-icon"
               className="hover:scale-105 duration-300"
               src="/images/icon-close.svg"
             />
@@ -80,7 +82,7 @@ export default function Header() {
       {/*Header 2 for all other pages*/}
       <div
         className={
-          hideHeader == false
+          hideHeader === false
             ? " w-full h-24 flex justify-center items-center bg-white"
             : "hidden"
         }
@@ -94,6 +96,7 @@ export default function Header() {
                     ? "rotate-90 hover:scale-110 transition-all duration-500"
                     : "hover:scale-110 transition-all duration-500"
                 }
+                alt="hamburger-menu-icon"
                 src="/images/icon-menu.svg"
                 onClick={() => {
                   setShowNav(true);
@@ -101,7 +104,7 @@ export default function Header() {
               />
             </div>
             <div className="mx-2 min-w-[100px]">
-              <img src="/images/logo.svg" />
+              <img alt="company-logo" src="/images/logo.svg" />
             </div>
             <div>
               <ul className="hidden md:flex gap-x-8">
@@ -134,10 +137,11 @@ export default function Header() {
                 } else setShowCart(true);
               }}
             >
-              <img src="/images/cart.svg" />
+              <img alt="cart-icon" src="/images/cart.svg" />
             </div>
             <div>
               <img
+                alt="avatar-icon"
                 className="min-h-[36px] h-[36px] w-[36px] min-w-[36px]"
                 src="/images/image-avatar.png"
               />

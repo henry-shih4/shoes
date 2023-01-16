@@ -21,6 +21,7 @@ export default function Collection() {
                       onClick={() => {
                         navigate(`/collection/${shoe.id}`);
                       }}
+                      alt={`shoe-${shoe.id}`}
                       className="w-[200px]"
                       src={shoe.main_image1}
                     />
