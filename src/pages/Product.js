@@ -18,13 +18,16 @@ export default function ProductDisplay() {
     getTotalCost,
   ] = useContext(CartContext);
 
-
   useEffect(() => {
     let shoe = shoeCollection.filter((shoe) => {
       return shoe.id == params.id;
     });
     setCurrentShoe(shoe[0]);
   }, [params.id]);
+
+  useEffect(() => {
+    setQuantity(0);
+  }, [activeImage]);
 
   return (
     <>

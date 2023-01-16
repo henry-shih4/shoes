@@ -1,18 +1,27 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import CartDisplay from "./CartDisplay";
+import { CartContext } from "../components/CartContext";
 
 export default function Header() {
   const [showNav, setShowNav] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const [hideHeader, setHideHeader] = useState(false);
+  const [, cartItems, , , , ,] = useContext(CartContext);
+  const [totalQuantity, setTotalQuantity] = useState(0);
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
+    let numItems = cartItems
+      .map((item) => item.quantity)
+      .reduce((sum, currentValue) => sum + currentValue, 0);
+    setTotalQuantity(numItems);
+  }, [cartItems]);
+
+  useEffect(() => {
     if (location.pathname === "/") {
       setHideHeader(true);
-      console.log("home page");
     } else setHideHeader(false);
   }, [location.pathname]);
 
@@ -130,7 +139,7 @@ export default function Header() {
           </div>
           <div className="flex gap-x-4 static md:relative">
             <div
-              className="min-h-[36px] h-[36px] min-w-[36px] hover:cursor-pointer"
+              className="relative min-h-[36px] h-[36px] min-w-[36px] hover:cursor-pointer"
               onClick={() => {
                 if (showCart) {
                   setShowCart(false);
@@ -138,6 +147,11 @@ export default function Header() {
               }}
             >
               <img alt="cart-icon" src="/images/cart.svg" />
+              <div className="absolute -top-[10%] left-[45%] ">
+                <div className="bg-red-400 text-white rounded-full w-[18px] h-[18px] text-xs flex justify-center items-center">
+                  {cartItems ? totalQuantity : null}
+                </div>
+              </div>
             </div>
             <div>
               <img

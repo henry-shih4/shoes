@@ -1,32 +1,16 @@
-import { useEffect, useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { shoeCollection } from "./shoeCollection";
+import { useContext } from "react";
 import { CartContext } from "../components/CartContext";
 
-
-export default function CartDisplay(props) {
-  const { showCart } = props;
-  const navigate = useNavigate();
-  const [
-    totalCost,
-    cartItems,
-    addItemToCart,
-    removeItemFromCart,
-    removeOneFromCart,
-    getTotalCost,
-  ] = useContext(CartContext);
-
-  useEffect(() => {
-    getTotalCost();
-  }, [cartItems]);
+export default function Checkout() {
+  const [, cartItems, , removeItemFromCart, , getTotalCost] =
+    useContext(CartContext);
 
   return (
     <>
-      <div className="max-h-[400px] overflow-y-auto">
-        <div className="">
-          <div className="p-4">Cart</div>
-          <div className="w-full border border-slate-200 mb-4"></div>
-          <div className="space-y-3">
+      <div className="flex justify-center items-center h-max min-h-[calc(100vh-96px)] w-full ">
+        <div className="h-full  w-[90%] flex flex-col justify-center items-center ">
+          <div>Your Items</div>
+          <div className="space-y-3 w-1/2">
             {cartItems.length > 0
               ? cartItems.map((item, index) => {
                   return (
@@ -68,18 +52,6 @@ export default function CartDisplay(props) {
                   );
                 })
               : "Cart is empty."}
-          </div>
-          <div>
-            <div>
-              Total: <span className="font-bold">{totalCost}</span>
-            </div>
-            <button
-              onClick={() => {
-                navigate("/checkout");
-              }}
-            >
-              Checkout
-            </button>
           </div>
         </div>
       </div>
