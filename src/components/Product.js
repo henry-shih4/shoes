@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { createMemoryRouter, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { shoeCollection } from "./shoeCollection";
+import Cart from "./Cart";
 
 export default function ProductDisplay() {
   const [activeImage, setActiveImage] = useState("1");
@@ -15,6 +16,46 @@ export default function ProductDisplay() {
     });
     setCurrentShoe(shoe[0]);
   }, []);
+
+  useEffect(() => {
+    if (cart[0]) {
+      let exists = cart[0].filter((shoe) => {
+        return shoe.id === 2;
+      });
+      console.log(exists);
+    }
+    console.log(cart[0]);
+  });
+
+  function addToCart() {
+    // if (cart[0]) {
+    //   cart[0].filter((item, index) => {
+    //     if (item.product_id === currentShoe.id) {
+    //       console.log("item exists");
+    //     }
+    //   });
+    // }
+
+    {
+      if (quantity > 0) {
+        // console.log(
+        //   `adding product ${params.id}, variation ${activeImage} to cart`
+        // );
+        setCart([
+          ...cart,
+          [
+            {
+              product_name: currentShoe.name,
+              product_img: currentShoe[`main_image${activeImage}`],
+              product_id: params.id,
+              variation: activeImage,
+              quantity: quantity,
+            },
+          ],
+        ]);
+      }
+    }
+  }
 
   return (
     <>
@@ -154,11 +195,19 @@ export default function ProductDisplay() {
                       <img src="/images/icon-plus.svg" />
                     </button>
                   </div>
-                  <div className="w-2/3 flex justify-center bg-orange-400 rounded-xl text-white">
-                    <button className="flex items-center font-bold space-x-2">
+                  <div className="w-2/3 flex justify-center text-white ">
+                    <button
+                      className="flex items-center justify-center w-full font-bold space-x-2 bg-orange-400  rounded-xl hover:cursor-pointer"
+                      onClick={() => {
+                        addToCart();
+                      }}
+                    >
                       <img src="/images/cart-white.svg" />
                       <div>Add to cart</div>
                     </button>
+                  </div>
+                  <div className="">
+                    <Cart className="hidden" cart={cart} />
                   </div>
                 </div>
               </div>

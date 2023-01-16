@@ -1,3 +1,4 @@
+
 import { useNavigate } from "react-router-dom";
 import { shoeCollection } from "./shoeCollection";
 
@@ -11,9 +12,10 @@ export default function Collection() {
           {shoeCollection.map((shoe) => {
             return (
               <>
+              
                 <div
                   key={shoe.id}
-                  className="flex flex-col justify-center items-center bg-white w-[240px] h-max min-w-[240px] min-h-[240px] m-2 p-2"
+                  className="flex flex-col justify-center items-center bg-white w-[240px] h-max min-w-[240px] min-h-[240px] m-2 p-2 font-raleway"
                 >
                   <img
                     onClick={() => {
