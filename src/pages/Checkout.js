@@ -3,8 +3,15 @@ import { useContext, useEffect } from "react";
 import { CartContext } from "../components/CartContext";
 
 export default function Checkout() {
-  const [, cartItems, , removeItemFromCart, , getTotalCost, showCart] =
-    useContext(CartContext);
+  const [
+    ,
+    cartItems,
+    ,
+    removeItemFromCart,
+    removeOneFromCart,
+    getTotalCost,
+    showCart,
+  ] = useContext(CartContext);
 
   useEffect(() => {
     console.log(cartItems);
@@ -48,11 +55,17 @@ export default function Checkout() {
                           </div>
                         </div>
                       </div>
-                      <div className="w-1/5 flex justify-center items-center gap-x-6">
-                        <div>
+                      <div className="w-1/5 flex justify-center items-center">
+                        <div
+                          className="h-1/2 w-1/2 flex justify-center items-center hover:cursor-pointer"
+                          onClick={() => {
+                            removeOneFromCart(index);
+                          }}
+                        >
                           <img alt="minus-icon" src="/images/icon-minus.svg" />
                         </div>
                         <div
+                          className="h-1/2 w-1/2 flex justify-center items-center hover:cursor-pointer"
                           onClick={() => {
                             removeItemFromCart(index);
                           }}

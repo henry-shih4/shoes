@@ -45,7 +45,16 @@ function CartProvider(props) {
     setCartItems(filtered);
   }
 
-  function removeOneFromCart() {}
+  function removeOneFromCart(index) {
+    // let itemToUpdate = cartItems.filter((item, i) => i == index);
+    // console.log(itemToUpdate);
+    cartItems[index].quantity -= 1;
+    if (cartItems[index].quantity == 0) {
+      removeItemFromCart(index);
+    } else {
+      setCartItems([...cartItems]);
+    }
+  }
 
   function getTotalCost() {
     let cost = cartItems.map((item) => item.price * item.quantity);

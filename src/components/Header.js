@@ -163,7 +163,7 @@ export default function Header() {
             <div
               className={
                 showCart
-                  ? "absolute top-[200%] left-[calc(50%-140px)] md:top-[120%] md:-left-[150%] h-max w-[280px] shadow-xl bg-white translate-y-0 transition-all duration-500 z-10 rounded-lg"
+                  ? "absolute top-[160%] left-[calc(50%-140px)] md:top-[120%] md:-left-[150%] h-max w-[280px] shadow-xl bg-white translate-y-0 transition-all duration-500 z-10 rounded-lg"
                   : "absolute md:top-[120%] md:-left-[150%] h-max w-[280px] shadow-xl bg-white -translate-y-[15%]  hidden  z-10 rounded-lg"
               }
             >
