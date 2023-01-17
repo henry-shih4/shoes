@@ -6,6 +6,12 @@ export default function Home() {
     <>
       <div className="flex justify-start items-center h-screen w-screen m-0">
         <div className="absolute w-full h-full bg-main bg-cover bg-center bg-no-repeat -z-10 "></div>
+        <div className="h-max">
+          <img
+            className="hidden w-[100px]"
+            src="/images/hero-shoe-no-bg-small.png"
+          />
+        </div>
         <div className="w-full min-w-1/2 h-4/5 flex justify-center items-center max-h-[600px] md:w-1/2 md:items-start">
           <div className="h-full justify-between w-3/4 flex flex-col rounded-xl gap-y-4 text-white text-center md:text-left md:justify-start">
             <div className=" font-bold text-3xl tracking-wide font-raleway">

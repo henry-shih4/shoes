@@ -186,7 +186,7 @@ export default function ProductDisplay() {
                   </div>
                   <div className="w-2/3 flex justify-center text-white ">
                     <button
-                      className="flex items-center justify-center w-full font-bold space-x-2 bg-orange-400  rounded-xl hover:cursor-pointer"
+                      className="flex items-center justify-center w-full font-bold space-x-2 bg-orange-400  rounded-xl hover:cursor-pointer hover:opacity-50 duration-500"
                       onClick={() => {
                         if (quantity > 0) {
                           addItemToCart({

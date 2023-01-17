@@ -4,8 +4,20 @@ import { shoeCollection } from "./shoeCollection";
 const CartContext = createContext();
 
 function CartProvider(props) {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState([
+    {
+      name: "Elevate Pro",
+      id: 3,
+      image: "/images/shoe-elevate-pro.png",
+      name: "Elevate Pro",
+      price: "125",
+      quantity: 1,
+      variation: "1",
+    },
+  ]);
+
   const [totalCost, setTotalCost] = useState(0);
+  const [showCart, setShowCart] = useState(false);
 
   function addItemToCart(product) {
     let exist = cartItems.find(
@@ -41,6 +53,10 @@ function CartProvider(props) {
     setTotalCost(total);
   }
 
+  function toggleShowCart(value) {
+    setShowCart(value);
+  }
+
   return (
     <CartContext.Provider
       value={[
@@ -50,6 +66,8 @@ function CartProvider(props) {
         removeItemFromCart,
         removeOneFromCart,
         getTotalCost,
+        showCart,
+        toggleShowCart,
       ]}
     >
       {props.children}

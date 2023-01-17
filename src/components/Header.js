@@ -5,9 +5,9 @@ import { CartContext } from "../components/CartContext";
 
 export default function Header() {
   const [showNav, setShowNav] = useState(false);
-  const [showCart, setShowCart] = useState(false);
   const [hideHeader, setHideHeader] = useState(false);
-  const [, cartItems, , , , ,] = useContext(CartContext);
+  const [, cartItems, , , , , showCart, toggleShowCart] =
+    useContext(CartContext);
   const [totalQuantity, setTotalQuantity] = useState(0);
   const navigate = useNavigate();
   const location = useLocation();
@@ -142,8 +142,8 @@ export default function Header() {
               className="relative min-h-[36px] h-[36px] min-w-[36px] hover:cursor-pointer"
               onClick={() => {
                 if (showCart) {
-                  setShowCart(false);
-                } else setShowCart(true);
+                  toggleShowCart(false);
+                } else toggleShowCart(true);
               }}
             >
               <img alt="cart-icon" src="/images/cart.svg" />
@@ -163,7 +163,7 @@ export default function Header() {
             <div
               className={
                 showCart
-                  ? "absolute top-[200%] left-[25%] md:top-[120%] md:-left-[150%] h-max w-[280px] shadow-xl bg-white translate-y-0 transition-all duration-500 z-10 rounded-lg"
+                  ? "absolute top-[200%] left-[calc(50%-140px)] md:top-[120%] md:-left-[150%] h-max w-[280px] shadow-xl bg-white translate-y-0 transition-all duration-500 z-10 rounded-lg"
                   : "absolute md:top-[120%] md:-left-[150%] h-max w-[280px] shadow-xl bg-white -translate-y-[15%]  hidden  z-10 rounded-lg"
               }
             >
