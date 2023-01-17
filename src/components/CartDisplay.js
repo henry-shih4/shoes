@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { shoeCollection } from "./shoeCollection";
 import { CartContext } from "../components/CartContext";
 
-
 export default function CartDisplay(props) {
   const { showCart } = props;
   const navigate = useNavigate();
@@ -56,12 +55,12 @@ export default function CartDisplay(props) {
                           </div>
                         </div>
                         <div
-                          className=""
+                          className="flex justify-center items-center hover:cursor-pointer"
                           onClick={() => {
                             removeItemFromCart(index);
                           }}
                         >
-                          <img alt="close-icon" src="/images/icon-close.svg" />
+                          <img alt="trash-icon" src="/images/icon-delete.svg" />
                         </div>
                       </div>
                     </>

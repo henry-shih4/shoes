@@ -10,7 +10,7 @@ module.exports = {
         bebas: ["Bebas Neue", "ui-sans-serif", "sans-serif"],
       },
       backgroundImage: {
-        main: "url('images/main-bg-wide.png')",
+        main: "url('images/shoe-nature-bg.png')",
       },
       textShadow: {
         sm: "0 1px 2px var(--tw-shadow-color)",
