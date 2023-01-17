@@ -6,9 +6,9 @@ export default function Collection() {
 
   return (
     <>
-      <div className="flex justify-center items-center h-max min-h-[calc(100vh-96px)] w-full ">
-        <div className="h-full  w-[90%] flex flex-col justify-center items-center ">
-          <div>our collection</div>
+      <div className="flex justify-center items-center h-max min-h-[calc(100vh-96px)] w-full md:items-start ">
+        <div className="h-full  w-[90%] flex flex-col justify-center items-center font-raleway">
+          <div className="mt-4">Our Collection</div>
           <div className="flex justify-center items-center flex-wrap">
             {shoeCollection.map((shoe) => {
               return (
