@@ -21,7 +21,7 @@ export default function Checkout() {
       <div className="flex flex-col justify-start items-center max-h-[calc(100vh-96px)] min-h-[calc(100vh-96px)] w-full md:justify-center">
         <div className="flex justify-center">Your Items</div>
         <div className="min-h-[300px] w-[90%] min-w-[320px] flex flex-col justify-center items-center ">
-          <div className="space-y-3 w-full w-2/3 min-w-[320px] max-w-[480px] max-h-full overflow-y-auto">
+          <div className="space-y-3 w-full  min-w-[320px] max-w-[480px] max-h-full overflow-y-auto">
             {cartItems.length > 0 ? (
               cartItems.map((item, index) => {
                 return (

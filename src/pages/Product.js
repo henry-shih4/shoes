@@ -2,12 +2,13 @@ import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { shoeCollection } from "../components/shoeCollection";
 import { CartContext } from "../components/CartContext";
+import ItemAddModal from "../components/ItemAddModal";
 
 export default function ProductDisplay() {
   const navigate = useNavigate();
   const [activeImage, setActiveImage] = useState("1");
   const [quantity, setQuantity] = useState(0);
-  const [cart, setCart] = useState([]);
+  const [showAddModal, setShowAddModal] = useState(false);
   const params = useParams();
   const [currentShoe, setCurrentShoe] = useState([]);
   const [
@@ -29,6 +30,13 @@ export default function ProductDisplay() {
   useEffect(() => {
     setQuantity(0);
   }, [activeImage]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowAddModal(false);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [showAddModal]);
 
   return (
     <>
@@ -197,6 +205,7 @@ export default function ProductDisplay() {
                             quantity: quantity,
                             price: currentShoe.price,
                           });
+                          setShowAddModal(true);
                         }
                       }}
                     >
@@ -208,6 +217,13 @@ export default function ProductDisplay() {
               </div>
             </div>
           </div>
+        </div>
+        <div
+          className={
+            showAddModal ? "absolute top-[30%] md:top-[20%] " : "hidden"
+          }
+        >
+          <ItemAddModal name={currentShoe.name} variation={activeImage} />
         </div>
       </div>
     </>

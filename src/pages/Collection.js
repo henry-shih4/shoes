@@ -17,7 +17,7 @@ export default function Collection() {
                 <>
                   <div
                     key={shoe.id}
-                    className="flex flex-col justify-center items-center bg-white w-[240px] h-max min-w-[240px] min-h-[240px] m-2 p-2 font-raleway"
+                    className="flex flex-col justify-center items-center bg-white w-[240px] h-max min-w-[240px] min-h-[240px] m-2 p-2 font-raleway hover:cursor-pointer"
                   >
                     <img
                       onClick={() => {

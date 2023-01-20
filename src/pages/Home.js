@@ -36,7 +36,7 @@ export default function Home() {
               </p>
               <div className="group w-max m-4 flex justify-center items-center">
                 <button
-                  className="relative w-[160px] h-[60px] bg-orange-500 rounded-lg font-bebas text-2xl tracking-widest border-slate-300 border-2 hover:shadow-[inset_200px_0_0_0] hover:shadow-orange-300 duration-[400ms,800ms] transition-[color,box-shadow]"
+                  className="relative w-[160px] h-[60px] bg-orange-500 rounded-lg font-bebas text-2xl tracking-widest border-slate-300 border-2 hover:shadow-[inset_200px_0_0_0] hover:shadow-white duration-[400ms,800ms] transition-[color,box-shadow] hover:text-orange-500"
                   onClick={() => {
                     navigate("/collection");
                   }}

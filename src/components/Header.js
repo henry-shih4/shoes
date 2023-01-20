@@ -92,7 +92,6 @@ export default function Header() {
           </ul>
         </div>
       </div>
-
       {/*Header 2 for all other pages*/}
       {hideHeader === false ? (
         <div

@@ -26,7 +26,11 @@ export default function CartDisplay(props) {
         <div className="">
           <div className="flex justify-between items-center p-4">
             <div>Cart</div>
-            <div>
+            <div
+              onClick={() => {
+                toggleShowCart(false);
+              }}
+            >
               <img alt="close-icon" src="/images/icon-close.svg" />
             </div>
           </div>
