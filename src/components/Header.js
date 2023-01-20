@@ -29,7 +29,7 @@ export default function Header() {
     <>
       {/*Home page Header*/}
       {hideHeader ? (
-        <div className="w-full bg-black flex items-center h-[64px] p-0">
+        <div className="w-full bg-[#B1C1C0] flex items-center h-[64px] p-0">
           <div
             onClick={() => {
               setShowNav(true);

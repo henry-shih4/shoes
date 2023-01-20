@@ -8,3 +8,12 @@ html {
   margin: 0;
   padding: 0;
 }
+
+#main-background {
+  background: linear-gradient(
+    225deg,
+    rgba(255, 178, 100, 1) 0%,
+    rgba(255, 157, 57, 1) 50%,
+    rgba(238, 119, 0,1) 100%
+  );
+}
