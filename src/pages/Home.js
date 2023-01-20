@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <>
       <div className="flex flex-col justify-center  items-center w-full h-max min-h-[calc(100vh-64px)] m-0 md:flex-row ">
-        <div className="absolute h-[calc(100%-64px)] w-full bg-main bg-cover bg-center bg-no-repeat -z-10 brightness-50"></div>
+        <div className="absolute h-[calc(100%-64px)] w-full bg-[#FF9D39] bg-cover bg-center bg-no-repeat -z-10"></div>
         <div className="w-full min-w-1/2 h-4/5 flex justify-center items-center max-h-[600px] md:w-1/2 md:items-start">
           <div className="h-full justify-center w-full flex flex-col rounded-xl text-white text-center md:text-left  md:w-3/4">
             <div className="mb-3">
@@ -36,7 +36,7 @@ export default function Home() {
               </p>
               <div className="group w-max m-4 flex justify-center items-center">
                 <button
-                  className="relative w-[160px] h-[60px] bg-orange-500 rounded-lg font-bebas text-2xl tracking-widest border-slate-300 border-2 hover:shadow-[inset_200px_0_0_0] hover:shadow-white duration-[400ms,800ms] transition-[color,box-shadow] hover:text-orange-500"
+                  className="relative w-[160px] h-[60px] bg-orange-[500] rounded-lg font-bebas text-2xl tracking-widest border-slate-300 border-2 hover:shadow-[inset_200px_0_0_0] hover:shadow-white duration-[400ms,800ms] transition-[color,box-shadow] hover:text-orange-500"
                   onClick={() => {
                     navigate("/collection");
                   }}
@@ -66,7 +66,7 @@ export default function Home() {
               }}
             >
               <img
-                className=" w-[120px] md:w-[180px] hover:scale-105 duration-300 cursor-pointer"
+                className=" w-[120px] lg:w-[160px] hover:scale-105 duration-300 cursor-pointer"
                 src={
                   activeShoe === "white-and-black"
                     ? "/images/hero-shoe-orange.png"
@@ -84,7 +84,7 @@ export default function Home() {
               }}
             >
               <img
-                className="w-[120px] md:w-[180px] hover:scale-105 duration-300  cursor-pointer"
+                className="w-[120px] lg:w-[160px] hover:scale-105 duration-300  cursor-pointer"
                 src={
                   activeShoe === "red"
                     ? "/images/hero-shoe-orange.png"
@@ -102,7 +102,7 @@ export default function Home() {
               }}
             >
               <img
-                className="w-[120px] md:w-[180px] hover:scale-105 duration-300  cursor-pointer"
+                className="w-[120px] lg:w-[160px] hover:scale-105 duration-300  cursor-pointer"
                 src={
                   activeShoe === "blue"
                     ? "/images/hero-shoe-orange.png"
