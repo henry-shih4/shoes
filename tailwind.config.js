@@ -10,7 +10,7 @@ module.exports = {
         bebas: ["Bebas Neue", "ui-sans-serif", "sans-serif"],
       },
       backgroundImage: {
-        main: "url('images/hero-shoe-1.png')",
+        main: "url('images/basketball-court-bg.jpg')",
       },
       textShadow: {
         sm: "0 1px 2px var(--tw-shadow-color)",
@@ -30,7 +30,7 @@ module.exports = {
         },
       },
       animation: {
-        fade: "fade 1s ease-in forwards",
+        fade: "fade 0.75s ease-in-out",
       },
     },
   },

@@ -94,89 +94,91 @@ export default function Header() {
       </div>
 
       {/*Header 2 for all other pages*/}
-      <div
-        className={
-          hideHeader === false
-            ? " w-full h-24 flex justify-center items-center bg-white"
-            : "hidden"
-        }
-      >
-        <div className="relative w-[80%] h-full border-b-2 border-slate-200 flex justify-between items-center md:static">
-          <div className="flex items-center md:gap-x-8">
-            <div className="min-w-[36px] md:hidden  hover:cursor-pointer">
-              <img
-                className={
-                  showNav
-                    ? "rotate-90 hover:scale-110 transition-all duration-500"
-                    : "hover:scale-110 transition-all duration-500"
-                }
-                alt="hamburger-menu-icon"
-                src="/images/icon-menu.svg"
-                onClick={() => {
-                  setShowNav(true);
-                }}
-              />
-            </div>
-            <div className="mx-2 min-w-[100px]">
-              <img alt="company-logo" src="/images/logo.svg" />
-            </div>
-            <div>
-              <ul className="hidden md:flex gap-x-8">
-                <li
+      {hideHeader === false ? (
+        <div
+          className={
+            hideHeader === false
+              ? " w-full h-24 flex justify-center items-center bg-white"
+              : "hidden"
+          }
+        >
+          <div className="relative w-[80%] h-full border-b-2 border-slate-200 flex justify-between items-center md:static">
+            <div className="flex items-center md:gap-x-8">
+              <div className="min-w-[36px] md:hidden  hover:cursor-pointer">
+                <img
+                  className={
+                    showNav
+                      ? "rotate-90 hover:scale-110 transition-all duration-500"
+                      : "hover:scale-110 transition-all duration-500"
+                  }
+                  alt="hamburger-menu-icon"
+                  src="/images/icon-menu.svg"
                   onClick={() => {
-                    navigate("/");
+                    setShowNav(true);
                   }}
-                >
-                  Home
-                </li>
-                <li
-                  onClick={() => {
-                    navigate("/collection");
-                  }}
-                >
-                  Collections
-                </li>
+                />
+              </div>
+              <div className="mx-2 min-w-[100px]">
+                <img alt="company-logo" src="/images/logo.svg" />
+              </div>
+              <div>
+                <ul className="hidden md:flex gap-x-8">
+                  <li
+                    onClick={() => {
+                      navigate("/");
+                    }}
+                  >
+                    Home
+                  </li>
+                  <li
+                    onClick={() => {
+                      navigate("/collection");
+                    }}
+                  >
+                    Collections
+                  </li>
 
-                <li>About</li>
-                <li>Contact</li>
-              </ul>
-            </div>
-          </div>
-          <div className="flex gap-x-4 static md:relative">
-            <div
-              className="relative min-h-[36px] h-[36px] min-w-[36px] hover:cursor-pointer"
-              onClick={() => {
-                if (showCart) {
-                  toggleShowCart(false);
-                } else toggleShowCart(true);
-              }}
-            >
-              <img alt="cart-icon" src="/images/cart.svg" />
-              <div className="absolute -top-[10%] left-[45%] ">
-                <div className="bg-red-400 text-white rounded-full w-[18px] h-[18px] text-xs flex justify-center items-center">
-                  {cartItems ? totalQuantity : null}
-                </div>
+                  <li>About</li>
+                  <li>Contact</li>
+                </ul>
               </div>
             </div>
-            <div>
-              <img
-                alt="avatar-icon"
-                className="min-h-[36px] h-[36px] w-[36px] min-w-[36px]"
-                src="/images/image-avatar.png"
-              />
-            </div>
-            <div
-              className={
-                showCart
-                  ? "absolute top-[160%] left-[calc(50%-140px)] md:top-[120%] md:-left-[150%] h-max w-[280px] shadow-xl bg-white translate-y-0 transition-all duration-500 z-10 rounded-lg"
-                  : "absolute md:top-[120%] md:-left-[150%] h-max w-[280px] shadow-xl bg-white -translate-y-[15%]  hidden  z-10 rounded-lg"
-              }
-            >
-              <CartDisplay showCart={showCart} />
+            <div className="flex gap-x-4 static md:relative">
+              <div
+                className="relative min-h-[36px] h-[36px] min-w-[36px] hover:cursor-pointer"
+                onClick={() => {
+                  if (showCart) {
+                    toggleShowCart(false);
+                  } else toggleShowCart(true);
+                }}
+              >
+                <img alt="cart-icon" src="/images/cart.svg" />
+                <div className="absolute -top-[10%] left-[45%] ">
+                  <div className="bg-red-400 text-white rounded-full w-[18px] h-[18px] text-xs flex justify-center items-center">
+                    {cartItems ? totalQuantity : null}
+                  </div>
+                </div>
+              </div>
+              <div>
+                <img
+                  alt="avatar-icon"
+                  className="min-h-[36px] h-[36px] w-[36px] min-w-[36px]"
+                  src="/images/image-avatar.png"
+                />
+              </div>
+              <div
+                className={
+                  showCart
+                    ? "absolute top-[160%] left-[calc(50%-140px)] md:top-[120%] md:-left-[150%] h-max w-[280px] shadow-xl bg-white translate-y-0 transition-all duration-500 z-10 rounded-lg"
+                    : "absolute md:top-[120%] md:-left-[150%] h-max w-[280px] shadow-xl bg-white -translate-y-[15%]  hidden  z-10 rounded-lg"
+                }
+              >
+                <CartDisplay showCart={showCart} />
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      ) : null}
     </>
   );
 }
