@@ -4,6 +4,7 @@ import { useState } from "react";
 export default function Home() {
   const navigate = useNavigate();
   const [activeShoe, setActiveShoe] = useState("orange");
+
   return (
     <>
       <div className="flex flex-col justify-center  items-center w-full h-max min-h-[calc(100vh-96px)] m-0 md:flex-row bg-black">
@@ -20,7 +21,8 @@ export default function Home() {
             </div>
             <div className="h-max min-w-[300px] max-w-[350px] flex justify-center items-center m-auto md:hidden">
               <img
-                className="min-w-[300px] flex justify-center items-center"
+                key={Math.random()}
+                className="animate-fade min-w-[300px] flex justify-center items-center"
                 src={`/images/hero-shoe-${activeShoe}.png`}
               />
             </div>
@@ -46,9 +48,10 @@ export default function Home() {
           </div>
         </div>
         <div className="flex flex-col justify-center items-center">
-          <div className="flex justify-center items-center hidden h-max md:block">
+          <div className=" flex justify-center items-center hidden h-max md:block">
             <img
-              className="min-w-[400px] transition-all "
+              key={Math.random()}
+              className="min-w-[400px] transition-all animate-fade "
               src={`/images/hero-shoe-${activeShoe}.png`}
             />
           </div>

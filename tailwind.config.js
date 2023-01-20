@@ -18,6 +18,20 @@ module.exports = {
         lg: "0 8px 16px var(--tw-shadow-color)",
         none: "none",
       },
+      keyframes: {
+        fade: {
+          "0%": {
+            opacity: "0",
+          },
+
+          "100%": {
+            opacity: "1",
+          },
+        },
+      },
+      animation: {
+        fade: "fade 1s ease-in forwards",
+      },
     },
   },
   plugins: [
