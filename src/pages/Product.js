@@ -34,7 +34,7 @@ export default function ProductDisplay() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowAddModal(false);
-    }, 1000);
+    }, 2000);
     return () => clearTimeout(timer);
   }, [showAddModal]);
 
@@ -218,11 +218,7 @@ export default function ProductDisplay() {
             </div>
           </div>
         </div>
-        <div
-          className={
-            showAddModal ? "absolute top-[30%] md:top-[20%] " : "hidden"
-          }
-        >
+        <div className={showAddModal ? "fixed top-[50%] " : "hidden"}>
           <ItemAddModal name={currentShoe.name} variation={activeImage} />
         </div>
       </div>
