@@ -9,7 +9,7 @@ export default function Home() {
     <>
       <div
         id="main-background"
-        className="flex flex-col justify-start  items-center w-full h-max min-h-[calc(100vh-64px)] m-0 md:flex-row md:justify-center"
+        className="flex flex-col justify-center  items-center w-full h-max min-h-[calc(100vh-64px)] m-0 md:flex-row md:justify-center"
       >
         <div className="mt-4 w-full min-w-1/2 h-4/5 flex justify-center items-center max-h-[600px] md:w-1/2 md:items-start md:mt-0">
           <div className="h-full justify-center w-full flex flex-col rounded-xl text-white text-center md:text-left  md:w-3/4">
@@ -49,7 +49,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col justify-center items-center gap-y-2">
+        <div className="flex flex-col justify-center items-center gap-y-6">
           <div className="justify-center hidden items-center h-max md:flex">
             <img
               key={Math.random()}
@@ -57,22 +57,22 @@ export default function Home() {
               src={`/images/hero-shoe-${activeShoe}.png`}
             />
           </div>
-          <div className="flex justify-center items-center w-full flex-wrap">
+          <div className="flex justify-center items-center w-full flex-wrap gap-x-2">
             <div
               onClick={() => {
-                if (activeShoe === "white-and-black") {
+                if (activeShoe === "white") {
                   setActiveShoe("orange");
                 } else {
-                  setActiveShoe("white-and-black");
+                  setActiveShoe("white");
                 }
               }}
             >
               <img
                 className=" w-[120px] lg:w-[160px] hover:scale-105 duration-300 cursor-pointer"
                 src={
-                  activeShoe === "white-and-black"
+                  activeShoe === "white"
                     ? "/images/hero-shoe-orange.png"
-                    : "/images/hero-shoe-white-and-black.png"
+                    : "/images/hero-shoe-white.png"
                 }
               />
             </div>

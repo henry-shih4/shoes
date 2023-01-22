@@ -43,23 +43,24 @@ export default function ProductDisplay() {
       <div className="flex justify-center items-center min-h-[calc(100vh-96px)] w-full ">
         <div className="w-[100%] flex flex-col justify-start items-center m-auto my-4 gap-y-4 md:flex-row md:w-[85%] lg:w-[75%] lg:lg:gap-x-14">
           <div className=" flex flex-col justify-center items-center w-1/2 min-w-[320px] gap-y-6 lg:items-end">
+            <div
+              className="w-full"
+              onClick={() => {
+                navigate("/collection");
+              }}
+            >
+              <img
+                alt="left-arrow-icon"
+                className="float-left  h-[28px] "
+                src="/images/left-arrow.svg"
+              />
+            </div>
             <div className="h-max w-3/5 min-w-[300px] relative ">
               <img
                 className="min-h-[300px] rounded-2xl"
                 src={currentShoe[`main_image${activeImage}`]}
                 alt={"selected-shoe"}
               />
-              <div
-                onClick={() => {
-                  navigate("/collection");
-                }}
-              >
-                <img
-                  alt="left-arrow-icon"
-                  className="absolute h-[28px] left-0 -top-[10%] md:top-0 md:-left-[25%] md:"
-                  src="/images/left-arrow.svg"
-                />
-              </div>
             </div>
             <div className="flex justify-between items-center gap-x-4 w-3/5 min-w-[300px]">
               <div
