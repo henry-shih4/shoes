@@ -58,7 +58,7 @@ export default function ProductDisplay() {
             >
               <img
                 alt="left-arrow-icon"
-                className="float-left  h-[28px] "
+                className="float-left  h-[28px] hover:scale-110 hover:cursor-pointer"
                 src="/images/left-arrow.svg"
               />
             </div>
@@ -73,8 +73,8 @@ export default function ProductDisplay() {
               <div
                 className={
                   activeImage === "1"
-                    ? "border-2 border-orange-400 min-h-[64px] min-w-[64px] max-h-[80px] max-w-[80px] rounded-xl "
-                    : "min-h-[64px] min-w-[64px] max-h-[80px] max-w-[80px] rounded-xl"
+                    ? "border-2 border-orange-400 min-h-[64px] min-w-[64px] max-h-[80px] max-w-[80px] rounded-xl hover:cursor-pointer"
+                    : "min-h-[64px] min-w-[64px] max-h-[80px] max-w-[80px] rounded-xl hover:cursor-pointer"
                 }
               >
                 <img
@@ -93,8 +93,8 @@ export default function ProductDisplay() {
               <div
                 className={
                   activeImage === "2"
-                    ? "border-2 border-orange-400 min-h-[64px] min-w-[64px] max-h-[80px] max-w-[80px] rounded-xl "
-                    : "min-h-[64px] min-w-[64px] max-h-[80px] max-w-[80px] rounded-xl"
+                    ? "border-2 border-orange-400 min-h-[64px] min-w-[64px] max-h-[80px] max-w-[80px] rounded-xl hover:cursor-pointer"
+                    : "min-h-[64px] min-w-[64px] max-h-[80px] max-w-[80px] rounded-xl hover:cursor-pointer"
                 }
               >
                 <img
@@ -113,8 +113,8 @@ export default function ProductDisplay() {
               <div
                 className={
                   activeImage === "3"
-                    ? "border-2 border-orange-400 min-h-[64px] min-w-[64px] max-h-[80px] max-w-[80px] rounded-xl "
-                    : "min-h-[64px] min-w-[64px] max-h-[80px] max-w-[80px] rounded-xl"
+                    ? "border-2 border-orange-400 min-h-[64px] min-w-[64px] max-h-[80px] max-w-[80px] rounded-xl hover:cursor-pointer"
+                    : "min-h-[64px] min-w-[64px] max-h-[80px] max-w-[80px] rounded-xl hover:cursor-pointer"
                 }
               >
                 <img
@@ -133,8 +133,8 @@ export default function ProductDisplay() {
               <div
                 className={
                   activeImage === "4"
-                    ? "border-2 border-orange-400 min-h-[64px] min-w-[64px] max-h-[80px] max-w-[80px] rounded-xl "
-                    : "min-h-[64px] min-w-[64px] max-h-[80px] max-w-[80px] rounded-xl"
+                    ? "border-2 border-orange-400 min-h-[64px] min-w-[64px] max-h-[80px] max-w-[80px] rounded-xl hover:cursor-pointer"
+                    : "min-h-[64px] min-w-[64px] max-h-[80px] max-w-[80px] rounded-xl hover:cursor-pointer"
                 }
               >
                 <img

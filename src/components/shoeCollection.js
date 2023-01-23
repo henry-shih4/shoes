@@ -1,15 +1,15 @@
 export const shoeCollection = [
   {
-    name: "City Strider",
+    name: "Court Starter",
     id: 1,
     description:
-      "These low profile sneakers are your perfect casual wear companion. Designed for everyday wear in urban environments. The shoe features a sleek and modern design, with a low-cut silhouette and a durable, yet lightweight build",
+      "The Court Starter is a basic basketball shoe designed for recreational players and those new to the sport. A great choice for beginners looking for an affordable, reliable shoe that will help them play their best on the court.",
     price: "70",
     old_price: "140",
-    main_image1: "/images/city-strider.jpg",
-    main_image2: "/images/city-strider-red.jpg",
-    main_image3: "/images/city-strider-blue.jpg",
-    main_image4: "/images/city-strider-olive.jpg",
+    main_image1: "/images/court-starter.png",
+    main_image2: "/images/court-starter-white.png",
+    main_image3: "/images/court-starter-yellow.png",
+    main_image4: "/images/court-starter-green.png",
   },
   {
     name: "Velocity Surge",
