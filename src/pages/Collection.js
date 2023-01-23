@@ -20,12 +20,6 @@ export default function Collection() {
               <div className="mt-4 text-3xl font-bold flex justify-start items-start w-full">
                 <div className="w-full">Our Collection</div>
               </div>
-              <p className="text-sm">
-                Our shoes are designed with advanced cushioning systems and
-                support features to provide maximum comfort and stability during
-                intense physical activity. Whether you're running, jumping, or
-                lifting, our shoes will help you perform at your best.
-              </p>
             </div>
           </div>
           <div className="flex justify-center h-full items-center flex-wrap">
