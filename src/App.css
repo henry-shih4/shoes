@@ -12,9 +12,9 @@ html {
 #main-background {
   background: linear-gradient(
     225deg,
-    rgba(255, 178, 100, 1) 0%,
-    rgb(218, 15, 76) 33%,
-    rgb(40, 99, 226) 66%
+    rgba(255, 178, 100, 1) 25%,
+    rgb(218, 15, 76) 50%,
+    rgb(40, 99, 226) 100%
   );
   background-size: 400% 400%;
   background-attachment: fixed;
@@ -38,10 +38,12 @@ body {
   overflow-x: hidden;
   /* overflow-y: hidden; */
   scroll-behavior: smooth;
-  /* background: linear-gradient(
-    225deg,
-    rgba(255, 178, 100, 1) 0%,
-    rgba(255, 157, 57, 1) 50%,
-    rgba(238, 119, 0, 1) 100%
-  ); */
+}
+
+#checkout-form input {
+  @apply rounded-md pl-2 mb-1 text-black;
+}
+
+#checkout-form label {
+  @apply mb-1;
 }

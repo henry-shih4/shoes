@@ -50,14 +50,16 @@ export default function Home() {
             </div>
           </div>
           <div className="flex flex-row justify-center items-center gap-y-6 py-4 md:flex-col">
-            <div className="justify-center hidden items-center h-max md:flex">
+            <div
+              className="animate-fade justify-center hidden items-center h-max md:flex"
+              key={activeShoe}
+            >
               <m.img
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1.25, ease: "easeOut" }}
                 exit={{ opacity: 1 }}
-                // key={Math.random()}
-                className="min-w-[340px] "
+                className="min-w-[340px]"
                 src={`/images/hero-shoe-${activeShoe}.png`}
               />
             </div>
