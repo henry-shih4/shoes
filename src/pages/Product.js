@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { shoeCollection } from "../components/shoeCollection";
 import { CartContext } from "../components/CartContext";
 import ItemAddModal from "../components/ItemAddModal";
+import { motion as m } from "framer-motion";
 
 export default function ProductDisplay() {
   const navigate = useNavigate();
@@ -40,7 +41,13 @@ export default function ProductDisplay() {
 
   return (
     <>
-      <div className="flex justify-center items-center min-h-[calc(100vh-96px)] w-full ">
+      <m.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.75, ease: "easeOut" }}
+        exit={{ opacity: 1 }}
+        className="absolute top-[96px] flex justify-center items-center min-h-[calc(100vh-96px)] w-full min-w-[320px] bg-white"
+      >
         <div className="w-[100%] flex flex-col justify-start items-center m-auto my-4 gap-y-4 md:flex-row md:w-[85%] lg:w-[75%] lg:lg:gap-x-14">
           <div className=" flex flex-col justify-center items-center w-1/2 min-w-[320px] gap-y-6 lg:items-end">
             <div
@@ -222,7 +229,7 @@ export default function ProductDisplay() {
         <div className={showAddModal ? "fixed top-[50%] " : "hidden"}>
           <ItemAddModal name={currentShoe.name} variation={activeImage} />
         </div>
-      </div>
+      </m.div>
     </>
   );
 }

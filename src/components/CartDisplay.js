@@ -22,7 +22,7 @@ export default function CartDisplay(props) {
 
   return (
     <>
-      <div className="max-h-[400px] overflow-y-auto">
+      <div className="max-h-[400px] overflow-y-auto text-black">
         <div className="">
           <div className="flex justify-between items-center p-4">
             <div>Cart</div>

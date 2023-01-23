@@ -18,7 +18,7 @@ export default function Checkout() {
   });
   return (
     <>
-      <div className="flex flex-col justify-start items-center max-h-[calc(100vh-96px)] min-h-[calc(100vh-96px)] w-full md:justify-center">
+      <div className="absolute top-[96px] bg-white flex flex-col justify-start items-center max-h-[calc(100vh-96px)] min-h-[calc(100vh-96px)] w-full md:justify-center">
         <div className="flex justify-center">Your Items</div>
         <div className="min-h-[300px] w-[90%] min-w-[320px] flex flex-col justify-center items-center ">
           <div className="space-y-3 w-full  min-w-[320px] max-w-[480px] max-h-full overflow-y-auto">

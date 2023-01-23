@@ -5,15 +5,15 @@ const CartContext = createContext();
 
 function CartProvider(props) {
   const [cartItems, setCartItems] = useState([
-    {
-      name: "Elevate Pro",
-      id: 3,
-      image: "/images/shoe-elevate-pro.png",
-      name: "Elevate Pro",
-      price: "125",
-      quantity: 1,
-      variation: "1",
-    },
+    // {
+    //   name: "Elevate Pro",
+    //   id: 3,
+    //   image: "/images/shoe-elevate-pro.png",
+    //   name: "Elevate Pro",
+    //   price: "125",
+    //   quantity: 1,
+    //   variation: "1",
+    // },
   ]);
 
   const [totalCost, setTotalCost] = useState(0);
