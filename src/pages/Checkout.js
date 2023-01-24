@@ -14,6 +14,10 @@ export default function Checkout() {
 
   const [card, setCard] = useState();
   const [cardCompany, setCardCompany] = useState();
+  const [name, setName] = useState();
+  const [month, setMonth] = useState();
+  const [year, setYear] = useState();
+  const [securityCode, setSecurityCode] = useState();
 
   // useEffect(() => {
   //   console.log(cartItems);
@@ -23,29 +27,45 @@ export default function Checkout() {
     getTotalCost();
   }, [cartItems]);
 
-  function validateCard() {
-    const visaCardNoRegex = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
+  function validateCardNo() {
+    const visaCardNoRegex = /^(?:4[0-9]{15})$/;
     const masterCardNoRegex = /^(?:5[1-5][0-9]{14})$/;
     const discoverCardNoRegex = /^(?:6(?:011|5[0-9][0-9])[0-9]{12})$/;
 
     if (card && card.match(visaCardNoRegex)) {
-      setCardCompany("Visa");
+      setCardCompany("visa");
     } else if (card && card.match(masterCardNoRegex)) {
-      setCardCompany("MasterCard");
+      setCardCompany("masterCard");
     } else if (card && card.match(discoverCardNoRegex)) {
-      setCardCompany("Discover");
+      setCardCompany("discover");
     } else setCardCompany("");
   }
 
   useEffect(() => {
-    validateCard(card);
+    validateCardNo(card);
   }, [card]);
 
   useEffect(() => {
-    console.log(cardCompany);
+    if (securityCode) {
+      console.log(securityCode.length);
+    }
   });
 
-  function handleCheckoutSubmit() {}
+  function handleCheckoutSubmit(e) {
+    e.preventDefault();
+    if (
+      !cardCompany ||
+      (securityCode.length !== 3 && securityCode.length !== 4)
+    ) {
+      console.log("invalid card");
+    } else {
+      console.log("success");
+      console.log(name);
+      console.log(month);
+      console.log(year);
+      console.log(securityCode);
+    }
+  }
 
   return (
     <>
@@ -120,23 +140,41 @@ export default function Checkout() {
             Total: <span className="font-bold">${totalCost}</span>
           </div>
         </div>
-        <div className="w-[320px] min-w-[300px] min-h-[200px] bg-orange-300 flex justify-center items-center rounded-lg">
+        <div className="w-[320px] min-w-[300px] min-h-[200px] py-4 bg-orange-300 flex justify-center items-center rounded-lg">
           <form
+            onSubmit={(e) => {
+              handleCheckoutSubmit(e);
+            }}
             id="checkout-form"
-            className="w-[320px] min-w-[300px] flex flex-col justify-center items-center"
+            className="w-[320px] min-w-[300px] flex flex-col justify-center items-center gap-y-4"
           >
             <div className="flex flex-col w-[85%]">
-              <label forHTML="name">
-                <p>Name</p>
-              </label>
-              <input type="text" />
-            </div>
-            <div className="flex flex-col w-[85%]">
-              <label className="flex gap-x-3 " forHTML="card-no">
-                <p>Card Number</p>
-                <div>{cardCompany}</div>
+              <label htmlFor="name">
+                <p>Name on Card</p>
               </label>
               <input
+                required
+                type="text"
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+              />
+            </div>
+            <div className="flex flex-col w-[85%]">
+              <label className="flex gap-x-3 " htmlFor="card-no">
+                <p>Card Number</p>
+                <div>
+                  {cardCompany ? (
+                    <img
+                      alt="card-company-logo"
+                      src={`/images/${cardCompany}-logo.svg`}
+                    />
+                  ) : null}
+                </div>
+              </label>
+              <input
+                maxLength={16}
+                required
                 type="text"
                 id="card-no"
                 value={card}
@@ -147,33 +185,72 @@ export default function Checkout() {
             </div>
             <div className="flex justify-center items-center">
               <div className="w-1/2 flex flex-col justify-center items-center">
-                <label forHTML="expiration">
+                <label htmlFor="expiration">
                   <p>Expiration (mm/yy)</p>
                 </label>
-                <input id="expiration" name="expiration" className="w-1/2" />
+                <div id="expiration" className="flex space-x-3">
+                  <select
+                    required
+                    id="month"
+                    className="w-1/2"
+                    onChange={(e) => {
+                      setMonth(e.target.value);
+                    }}
+                  >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                  </select>
+                  <select
+                    required
+                    id="year"
+                    className="w-1/2"
+                    onChange={(e) => {
+                      setYear(e.target.value);
+                    }}
+                  >
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="25">26</option>
+                    <option value="25">27</option>
+                    <option value="25">28</option>
+                  </select>
+                </div>
               </div>
-              <div className="w-1/2 flex flex-col justify-center items-center">
-                <label forHTML="security-code">
+              <div
+                className="w-1/2 flex flex-col justify-center items-center"
+                onChange={(e) => {
+                  setSecurityCode(e.target.value);
+                }}
+              >
+                <label htmlFor="security-code">
                   <p>Security Code</p>
                 </label>
                 <input
+                  maxLength={4}
+                  required
                   id="security-code"
                   name="security-code"
                   className="w-1/2"
                 />
               </div>
             </div>
+            <div className="py-4">
+              <button className="w-[120px] bg-green-500 font-raleway text-white rounded-lg py-2 hover:opacity-50 duration-500">
+                Checkout
+              </button>
+            </div>
           </form>
-        </div>
-        <div className="py-4">
-          <button
-            className="w-[120px] bg-orange-400 font-raleway text-white rounded-lg py-2 hover:opacity-50 duration-500"
-            onClick={() => {
-              handleCheckoutSubmit();
-            }}
-          >
-            Checkout
-          </button>
         </div>
       </div>
     </>

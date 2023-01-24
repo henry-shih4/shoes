@@ -111,7 +111,7 @@ export default function Header() {
               </ul>
             </div>
           </div>
-          <div className="mr-[100px] flex gap-x-4 static md:relative">
+          <div className="mr-[80px] flex gap-x-4 static md:relative">
             <div
               className="relative min-h-[36px] h-[36px] min-w-[36px] hover:cursor-pointer"
               onClick={() => {

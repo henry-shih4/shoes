@@ -10,7 +10,7 @@ module.exports = {
         bebas: ["Bebas Neue", "ui-sans-serif", "sans-serif"],
       },
       backgroundImage: {
-        main: "url('images/basketball-court-bg.jpg')",
+        main: "linear-gradient(rgba(0,0,0,.8),rgba(0,0,0,.8)),url('images/basketball-court-bg.jpg')",
       },
       textShadow: {
         sm: "0 1px 2px var(--tw-shadow-color)",

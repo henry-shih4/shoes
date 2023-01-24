@@ -8,6 +8,8 @@ export default function Home() {
   const [activeShoe, setActiveShoe] = useState("white");
   const control = useAnimation();
   const [ref, inView] = useInView();
+  
+
 
   const container = {
     hidden: { opacity: 0 },
@@ -41,13 +43,13 @@ export default function Home() {
         transition={{ duration: 0.75, ease: "easeOut" }}
         exit={{ opacity: 1 }}
         id="main-background"
-        className="h-max w-screen bg-black"
+        className="h-max w-screen bg-slate-400"
       >
-        <div className=" flex flex-col pt-[96px] min-h-screen justify-center items-center w-full  md:justify-center">
+        <div className=" flex flex-col pt-[96px] min-h-screen justify-center items-center w-full  md:justify-center text-white">
           <div className="flex flex-col justify-center items-center md:flex-row">
             <div className="flex flex-col justify-center items-center md:flex-row h-full">
               <div className="mt-4 w-full min-w-1/2 h-4/5 flex justify-center items-center max-h-[600px] md:w-1/2 md:items-start md:mt-0">
-                <div className="h-full justify-center items-center w-full flex flex-col rounded-xl text-white text-center md:text-left  md:w-3/4">
+                <div className="h-full justify-center items-center w-full flex flex-col rounded-xl  text-center md:text-left  md:w-3/4">
                   <div className="mb-5 px-4 flex flex-col justify-center items-center">
                     <div className="text-3xl font-bold tracking-wide font-raleway md:text-6xl ">
                       Unleash Your Potential.
@@ -59,14 +61,14 @@ export default function Home() {
                   <div className="h-max pb-4 min-w-[200px] max-w-[350px] flex justify-center items-center m-auto md:hidden">
                     <img
                       key={activeShoe}
-                      className="min-w-[240px] flex justify-center items-center animate-fade"
+                      className="min-w-[240px] max-h-[200px] flex justify-center items-center animate-fade"
                       src={`/images/hero-shoe-${activeShoe}.png`}
                     />
                   </div>
                   <div className="flex justify-center items-center md:justify-start">
                     <div className="group w-max m-4 flex justify-center items-center">
                       <button
-                        className="relative w-[160px] h-[60px] bg-orange-500 rounded-lg font-bebas text-2xl tracking-widest border-slate-300 border-2 hover:shadow-[inset_200px_0_0_0] hover:shadow-white duration-[400ms,800ms] transition-[color,box-shadow] hover:text-orange-500"
+                        className="relative w-[160px] h-[60px] bg-orange-400 rounded-lg font-bebas text-2xl tracking-widest border-slate-300 border-2 hover:shadow-[inset_200px_0_0_0] hover:shadow-white duration-[400ms,800ms] transition-[color,box-shadow] hover:text-orange-500"
                         onClick={() => {
                           navigate("/collection");
                         }}
@@ -83,16 +85,15 @@ export default function Home() {
                   key={activeShoe}
                 >
                   <m.img
-                    // initial={{ opacity: 0 }}
-                    // animate={{ opacity: 1 }}
-                    // transition={{ duration: 1.25, ease: "easeOut" }}
-                    // exit={{ opacity: 1 }}
-                    className="min-w-[340px]"
+                    className="min-w-[340px] max-h-[300px]"
                     src={`/images/hero-shoe-${activeShoe}.png`}
                   />
                 </div>
                 <div className="flex w-full justify-around items-center gap-x-6 md:w-[80%]">
-                  <div
+                  <m.div
+                    initial={{ x: "500%" }}
+                    animate={{ x: "0%" }}
+                    transition={{ duration: 1.25, ease: "easeOut" }}
                     onClick={() => {
                       if (activeShoe === "orange") {
                         setActiveShoe("white");
@@ -109,8 +110,11 @@ export default function Home() {
                           : "/images/hero-shoe-orange.png"
                       }
                     />
-                  </div>
-                  <div
+                  </m.div>
+                  <m.div
+                    initial={{ x: "300%" }}
+                    animate={{ x: "0%" }}
+                    transition={{ duration: 1.25, delay: 0.5, ease: "easeOut" }}
                     onClick={() => {
                       if (activeShoe === "red") {
                         setActiveShoe("white");
@@ -127,8 +131,15 @@ export default function Home() {
                           : "/images/hero-shoe-red.png"
                       }
                     />
-                  </div>
-                  <div
+                  </m.div>
+                  <m.div
+                    initial={{ x: "200%" }}
+                    animate={{ x: "0%" }}
+                    transition={{
+                      duration: 1.25,
+                      delay: 0.75,
+                      ease: "easeOut",
+                    }}
                     onClick={() => {
                       if (activeShoe === "blue") {
                         setActiveShoe("white");
@@ -145,13 +156,13 @@ export default function Home() {
                           : "/images/hero-shoe-blue.png"
                       }
                     />
-                  </div>
+                  </m.div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div className=" h-screen w-screen flex justify-center items-start text-white">
+        <div className=" h-screen w-screen flex flex-col justify-start items-center text-white ">
           <div className="pt-10 flex flex-col justify-center items-center w-[80%] h-max">
             <m.div
               variants={container}
@@ -201,6 +212,17 @@ export default function Home() {
                 </div>
               </m.div>
             </m.div>
+          </div>
+          <div className="mt-4 h-full w-full">
+            <div className="bg-main h-full w-full bg-cover  flex justify-center items-center">
+              <div className="flex flex-col space-y-2 justify-center items-center">
+                <label forHTML="signup font-raleway">
+                  Sign Up for Exclusive Deals
+                </label>
+                <input id="signup" />
+                <button className="w-[160px] h-[40px] w-full bg-orange-400 rounded-lg font-bebas text-xl tracking-widest border-slate-300 border-2 hover:shadow-[inset_200px_0_0_0] hover:shadow-white duration-[400ms,800ms] transition-[color,box-shadow] hover:text-orange-500">SIGN UP</button>
+              </div>
+            </div>
           </div>
         </div>
       </m.div>
