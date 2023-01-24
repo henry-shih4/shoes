@@ -9,7 +9,7 @@ html {
   padding: 0;
 }
 
-/* #main-background {
+#main-background {
   background: linear-gradient(
     225deg,
     rgba(255, 178, 100, 1) 25%,
@@ -18,8 +18,8 @@ html {
   );
   background-size: 300% 300%;
   background-attachment: fixed;
-  animation: move 12s ease infinite
-} */
+  animation: move 12s ease infinite;
+}
 
 @keyframes move {
   0% {
@@ -45,7 +45,7 @@ input {
 }
 
 #checkout-form select {
-  @apply bg-white rounded-md pl-2
+  @apply bg-white rounded-md pl-2;
 }
 
 #checkout-form label {

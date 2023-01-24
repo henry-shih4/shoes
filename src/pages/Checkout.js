@@ -67,10 +67,18 @@ export default function Checkout() {
 
   return (
     <>
-      <div className="absolute top-[96px] bg-white flex flex-col justify-start items-center h-max min-h-[calc(100vh-96px)] w-screen md:justify-center">
-        {!showCheckoutSuccessModal ? (
-          <div className="absolute top-50% h-[200px] text-green-500 bg-slate-200">
-            Checkout Completed!
+      <div
+        className={
+          showCheckoutSuccessModal
+            ? "absolute top-[96px] bg-white flex flex-col justify-start items-center h-max min-h-[calc(100vh-96px)] w-screen bg-white md:justify-center brightness-50"
+            : "absolute top-[96px] bg-white flex flex-col justify-start items-center h-max min-h-[calc(100vh-96px)] w-screen bg-white md:justify-center"
+        }
+      >
+        {showCheckoutSuccessModal ? (
+          <div className="absolute flex justify-center items-center top-50%   ">
+            <div className=" text-green-500 bg-slate-200">
+              Checkout Completed!
+            </div>
           </div>
         ) : null}
         <div className="flex justify-center font-raleway text-xl py-4">
