@@ -67,7 +67,7 @@ export default function Header() {
       {/*Header for all pages*/}
       <div
         className={
-          "absolute w-full h-24 flex justify-center items-center bg-[#000] text-white z-50"
+          "absolute top-0 w-full h-24 flex justify-center items-center bg-[#000] text-white z-50"
         }
       >
         <div className="relative w-full h-full flex justify-between items-center md:absolute">
