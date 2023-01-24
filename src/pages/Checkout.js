@@ -18,10 +18,9 @@ export default function Checkout() {
   const [month, setMonth] = useState();
   const [year, setYear] = useState();
   const [securityCode, setSecurityCode] = useState();
-
-  // useEffect(() => {
-  //   console.log(cartItems);
-  // });
+  const [errorMsg, setErrorMsg] = useState();
+  const [showCheckoutSuccessModal, setShowCheckoutSuccessModal] =
+    useState(false);
 
   useEffect(() => {
     getTotalCost();
@@ -45,31 +44,35 @@ export default function Checkout() {
     validateCardNo(card);
   }, [card]);
 
-  useEffect(() => {
-    if (securityCode) {
-      console.log(securityCode.length);
-    }
-  });
-
   function handleCheckoutSubmit(e) {
     e.preventDefault();
+    if (cartItems.length < 1) {
+      setErrorMsg("cart is empty!");
+      return;
+    }
     if (
       !cardCompany ||
       (securityCode.length !== 3 && securityCode.length !== 4)
     ) {
-      console.log("invalid card");
+      setErrorMsg("invalid card, please try again");
     } else {
-      console.log("success");
-      console.log(name);
-      console.log(month);
-      console.log(year);
-      console.log(securityCode);
+      setShowCheckoutSuccessModal(true);
+      setName("");
+      setCard("");
+      setSecurityCode("");
+      setMonth("");
+      setYear("");
     }
   }
 
   return (
     <>
       <div className="absolute top-[96px] bg-white flex flex-col justify-start items-center h-max min-h-[calc(100vh-96px)] w-screen md:justify-center">
+        {!showCheckoutSuccessModal ? (
+          <div className="absolute top-50% h-[200px] text-green-500 bg-slate-200">
+            Checkout Completed!
+          </div>
+        ) : null}
         <div className="flex justify-center font-raleway text-xl py-4">
           Your Items
         </div>
@@ -140,7 +143,7 @@ export default function Checkout() {
             Total: <span className="font-bold">${totalCost}</span>
           </div>
         </div>
-        <div className="w-[320px] min-w-[300px] min-h-[200px] py-4 bg-orange-300 flex justify-center items-center rounded-lg">
+        <div className="w-[320px] min-w-[300px] min-h-[200px] py-4 mb-4 bg-orange-300 flex justify-center items-center rounded-lg">
           <form
             onSubmit={(e) => {
               handleCheckoutSubmit(e);
@@ -153,6 +156,8 @@ export default function Checkout() {
                 <p>Name on Card</p>
               </label>
               <input
+                value={name}
+                maxLength={32}
                 required
                 type="text"
                 onChange={(e) => {
@@ -237,6 +242,7 @@ export default function Checkout() {
                   <p>Security Code</p>
                 </label>
                 <input
+                  value={securityCode}
                   maxLength={4}
                   required
                   id="security-code"
@@ -245,7 +251,8 @@ export default function Checkout() {
                 />
               </div>
             </div>
-            <div className="py-4">
+            <div className="flex flex-col justify-center items-center gap-y-2">
+              <div>{errorMsg ? <div>{errorMsg}</div> : null}</div>
               <button className="w-[120px] bg-green-500 font-raleway text-white rounded-lg py-2 hover:opacity-50 duration-500">
                 Checkout
               </button>
