@@ -1,27 +1,37 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-
-import { motion as m, useScroll } from "framer-motion";
+import { useState, useEffect } from "react";
+import { useInView } from "react-intersection-observer";
+import { motion as m, useAnimation } from "framer-motion";
 
 export default function Home() {
   const navigate = useNavigate();
   const [activeShoe, setActiveShoe] = useState("white");
-  const { scrollYProgress } = useScroll();
+  const control = useAnimation();
+  const [ref, inView] = useInView();
 
-  const cardVariants = {
-    offscreen: {
-      y: 25,
-    },
-    onscreen: {
-      y: 50,
-      rotate: -10,
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
       transition: {
-        type: "spring",
-        bounce: 0.4,
-        duration: 0.8,
+        delayChildren: 0.5,
+        staggerChildren: 0.5,
       },
     },
   };
+
+  const item = {
+    hidden: { opacity: 0 },
+    show: { opacity: 1, transition: { duration: 1 } },
+  };
+
+  useEffect(() => {
+    if (inView) {
+      control.start("show");
+    } else {
+      control.start("hidden");
+    }
+  }, [control, inView]);
 
   return (
     <>
@@ -142,36 +152,55 @@ export default function Home() {
           </div>
         </div>
         <div className=" h-screen w-screen flex justify-center items-start text-white">
-          <div className="flex flex-col justify-center items-center gap-y-8 w-[80%] h-max ">
+          <div className="pt-10 flex flex-col justify-center items-center w-[80%] h-max">
             <m.div
-              initial={{ y: 300 }}
-              whileInView={{ y: 50 }}
-              transition={{
-                type: "spring",
-                bounce: 0.4,
-                duration: 0.8,
-              }}
-              className="flex gap-x-10 md:flex-row "
+              variants={container}
+              initial="hidden"
+              animate={control}
+              ref={ref}
+              className="space-y-8"
             >
-              <div className="font-bold text-3xl text-center">designed</div>
+              <m.div
+                variants={item}
+                className="w-full flex flex-col justify-center items-center md:flex-row md:items-start"
+              >
+                <div className="w-full text-xl font-bold text-center mr-4 md:text-3xl md:w-1/3">
+                  designed
+                </div>
 
-              <div className="max-w-[400px]">
-                <div>
+                <div className="w-[320px] text-center md:text-left md:w-2/3 md: max-w-[400px]">
                   with the latest technology to enhance performance, reduce the
                   risk of injury, and provide a comfortable experience.
                 </div>
-              </div>
-            </m.div>
-            <div className="flex gap-x-10 md:flex-row">
-              <div className="font-bold text-3xl text-center">versatile</div>
-
-              <div className="max-w-[400px]">
-                <div>
-                  for all forms of intense physical activity. running, jumping,
-                  or lifting, our shoes will help you perform at your best.
+              </m.div>
+              <m.div
+                variants={item}
+                className="pt-2 flex flex-col justify-center items-center md:flex-row md:items-start"
+              >
+                <div className="w-full font-bold text-xl text-center mr-4 md:text-3xl md:w-1/3">
+                  versatile
                 </div>
-              </div>
-            </div>
+
+                <div className="w-[320px] text-center md:text-left md:w-2/3 md: max-w-[400px]">
+                  for all forms of intense physical activity. While running,
+                  jumping, or lifting, our shoes will help you perform at your
+                  best.
+                </div>
+              </m.div>
+              <m.div
+                variants={item}
+                className="pt-2 flex flex-col justify-center items-center w-max md:flex-row md:items-start"
+              >
+                <div className="w-full font-bold text-xl text-center mr-4 md:text-3xl md:w-1/3">
+                  affordable
+                </div>
+
+                <div className="w-[320px] text-center md:text-left md:w-2/3 md:max-w-[400px]">
+                  pricing and shipping. We don't want you to have to break the
+                  bank to be able to enjoy the activities you love!
+                </div>
+              </m.div>
+            </m.div>
           </div>
         </div>
       </m.div>

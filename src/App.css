@@ -10,7 +10,7 @@ html {
 }
 
 #main-background {
-  /* background: linear-gradient(
+  background: linear-gradient(
     225deg,
     rgba(255, 178, 100, 1) 25%,
     rgb(218, 15, 76) 50%,
@@ -18,7 +18,7 @@ html {
   );
   background-size: 200% 200%;
   background-attachment: fixed;
-  animation: move 12s ease infinite; */
+  animation: move 12s ease infinite;
 }
 
 @keyframes move {
