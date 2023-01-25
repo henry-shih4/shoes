@@ -1,5 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../components/CartContext";
+import Lottie from "react-lottie-player";
+import lottieJson from "../check.json";
 
 export default function Checkout() {
   const [
@@ -10,6 +12,8 @@ export default function Checkout() {
     removeOneFromCart,
     getTotalCost,
     showCart,
+    ,
+    clearCart,
   ] = useContext(CartContext);
 
   const [card, setCard] = useState();
@@ -57,6 +61,7 @@ export default function Checkout() {
       setErrorMsg("invalid card, please try again");
     } else {
       setShowCheckoutSuccessModal(true);
+      clearCart();
       setName("");
       setCard("");
       setSecurityCode("");
@@ -70,16 +75,28 @@ export default function Checkout() {
       <div
         className={
           showCheckoutSuccessModal
-            ? "absolute top-[96px] bg-white flex flex-col justify-start items-center h-max min-h-[calc(100vh-96px)] w-screen bg-white md:justify-center brightness-50"
-            : "absolute top-[96px] bg-white flex flex-col justify-start items-center h-max min-h-[calc(100vh-96px)] w-screen bg-white md:justify-center"
+            ? "absolute top-[96px] bg-white flex flex-col justify-start items-center h-max min-h-[calc(100vh-96px)] w-screen  md:justify-center"
+            : "absolute top-[96px] bg-white flex flex-col justify-start items-center h-max min-h-[calc(100vh-96px)] w-screen md:justify-center"
         }
       >
         {showCheckoutSuccessModal ? (
-          <div className="absolute flex justify-center items-center top-50%   ">
-            <div className=" text-green-500 bg-slate-200">
-              Checkout Completed!
+          <>
+            <div className="absolute h-full w-full bg-slate-400 flex justify-center items-center opacity-70 top-50%"></div>
+            <div className="absolute flex flex-col justify-center items-center top-50% text-green-500 bg-slate-200 h-[200px] w-[200px]">
+              <div>Thank you! Your checkout is complete.</div>
+              <div>
+                <Lottie
+                  loop={false}
+                  animationData={lottieJson}
+                  play
+                  style={{ width: 150, height: 150 }}
+                />
+              </div>
+              <div onClick={() => setShowCheckoutSuccessModal(false)}>
+                <img src="/images/icon-close.svg" />
+              </div>
             </div>
-          </div>
+          </>
         ) : null}
         <div className="flex justify-center font-raleway text-xl py-4">
           Your Items
@@ -261,9 +278,12 @@ export default function Checkout() {
             </div>
             <div className="flex flex-col justify-center items-center gap-y-2">
               <div>{errorMsg ? <div>{errorMsg}</div> : null}</div>
-              <button className="w-[120px] bg-green-500 font-raleway text-white rounded-lg py-2 hover:opacity-50 duration-500">
+              <button className="w-[120px] bg-blue-500 font-raleway text-white rounded-lg py-2 hover:opacity-50 duration-500">
                 Checkout
               </button>
+              <p className="text-xs">
+                test only, dont enter real credit card information
+              </p>
             </div>
           </form>
         </div>

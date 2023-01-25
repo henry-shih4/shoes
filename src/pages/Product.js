@@ -42,10 +42,10 @@ export default function ProductDisplay() {
   return (
     <>
       <m.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.75, ease: "easeOut" }}
-        exit={{ opacity: 1 }}
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        exit={{ scale: 1 }}
         className="absolute top-[96px] flex justify-center items-center min-h-[calc(100vh-96px)] w-full min-w-[320px] bg-white"
       >
         <div className="w-[100%] flex flex-col justify-start items-center m-auto my-4 gap-y-4 md:flex-row md:w-[85%] lg:w-[75%] lg:lg:gap-x-14">

@@ -8,8 +8,6 @@ export default function Home() {
   const [activeShoe, setActiveShoe] = useState("white");
   const control = useAnimation();
   const [ref, inView] = useInView();
-  
-
 
   const container = {
     hidden: { opacity: 0 },
@@ -18,6 +16,7 @@ export default function Home() {
       transition: {
         delayChildren: 0.5,
         staggerChildren: 0.5,
+        duration: 0.5,
       },
     },
   };
@@ -163,7 +162,7 @@ export default function Home() {
           </div>
         </div>
         <div className=" h-screen w-screen flex flex-col justify-start items-center text-white ">
-          <div className="pt-10 flex flex-col justify-center items-center w-[80%] h-max">
+          <div className="pt-4 mb-4 flex flex-col justify-center items-center w-[80%] h-max">
             <m.div
               variants={container}
               initial="hidden"
@@ -220,7 +219,9 @@ export default function Home() {
                   Sign Up for Exclusive Deals
                 </label>
                 <input id="signup" />
-                <button className="w-[160px] h-[40px] w-full bg-orange-400 rounded-lg font-bebas text-xl tracking-widest border-slate-300 border-2 hover:shadow-[inset_200px_0_0_0] hover:shadow-white duration-[400ms,800ms] transition-[color,box-shadow] hover:text-orange-500">SIGN UP</button>
+                <button className="w-[160px] h-[40px] w-full bg-orange-400 rounded-lg font-bebas text-xl tracking-widest border-slate-300 border-2 hover:shadow-[inset_200px_0_0_0] hover:shadow-white duration-[400ms,800ms] transition-[color,box-shadow] hover:text-orange-500">
+                  SIGN UP
+                </button>
               </div>
             </div>
           </div>
