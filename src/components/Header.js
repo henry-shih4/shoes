@@ -58,8 +58,6 @@ export default function Header() {
             >
               Collections
             </li>
-            <li>About</li>
-            <li>Contact</li>
           </ul>
         </div>
       </div>
@@ -71,7 +69,7 @@ export default function Header() {
         }
       >
         <div className="relative w-full h-full flex justify-between items-center md:absolute">
-          <div className="flex items-center gap-x-4 md:gap-x-8">
+          <div className="flex items-center h-full gap-x-4 md:gap-x-8">
             <div className="min-w-[36px] md:hidden  hover:cursor-pointer">
               <img
                 className={
@@ -86,12 +84,18 @@ export default function Header() {
                 }}
               />
             </div>
-            <div className="mx-2 min-w-[100px]">
+            <div
+              className="mx-2 min-w-[100px] hover:cursor-pointer"
+              onClick={() => {
+                navigate("/");
+              }}
+            >
               <img alt="company-logo" src="/images/logo.svg" />
             </div>
-            <div>
-              <ul className="hidden md:flex gap-x-8">
+            <div className="h-full">
+              <ul className="h-full hidden  md:flex justify-center items-center gap-x-4">
                 <li
+                  className="rounded-lg flex justify-center items-center hover:bg-white hover:text-black h-[50%] w-[100px] transition-all duration-[500ms]"
                   onClick={() => {
                     navigate("/");
                   }}
@@ -99,15 +103,13 @@ export default function Header() {
                   Home
                 </li>
                 <li
+                  className="rounded-lg flex justify-center items-center hover:bg-white hover:text-black h-[50%] w-[100px] transition-all duration-[500ms]"
                   onClick={() => {
                     navigate("/collection");
                   }}
                 >
                   Collections
                 </li>
-
-                <li>About</li>
-                <li>Contact</li>
               </ul>
             </div>
           </div>

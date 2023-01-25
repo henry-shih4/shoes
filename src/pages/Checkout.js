@@ -81,9 +81,20 @@ export default function Checkout() {
       >
         {showCheckoutSuccessModal ? (
           <>
-            <div className="absolute h-full w-full bg-slate-400 flex justify-center items-center opacity-70 top-50%"></div>
-            <div className="absolute flex flex-col justify-center items-center top-50% text-green-500 bg-slate-200 h-[200px] w-[200px]">
-              <div>Thank you! Your checkout is complete.</div>
+            <div className="absolute h-full w-full bg-slate-400 flex justify-center items-center opacity-70 "></div>
+            <div className="absolute flex flex-col justify-center items-center bottom-[50%] text-green-500 bg-slate-200 h-[max]  w-[240px]">
+              <div
+                className="w-full flex justify-end p-2"
+                onClick={() => setShowCheckoutSuccessModal(false)}
+              >
+                <img
+                  className="hover:cursor-pointer"
+                  src="/images/icon-close.svg"
+                />
+              </div>
+              <div className="text-center w-full">
+                Thank you! Your checkout is complete.
+              </div>
               <div>
                 <Lottie
                   loop={false}
@@ -91,9 +102,6 @@ export default function Checkout() {
                   play
                   style={{ width: 150, height: 150 }}
                 />
-              </div>
-              <div onClick={() => setShowCheckoutSuccessModal(false)}>
-                <img src="/images/icon-close.svg" />
               </div>
             </div>
           </>
