@@ -9,7 +9,8 @@ export default function CartDisplay(props) {
     cartItems,
     ,
     removeItemFromCart,
-    ,
+    removeOneFromCart,
+
     getTotalCost,
     ,
     toggleShowCart,
@@ -62,13 +63,22 @@ export default function CartDisplay(props) {
                         </div>
                       </div>
                     </div>
-                    <div
-                      className="flex justify-center items-center hover:cursor-pointer"
-                      onClick={() => {
-                        removeItemFromCart(index);
-                      }}
-                    >
-                      <img alt="trash-icon" src="/images/icon-delete.svg" />
+                    <div className="flex flex-col gap-y-6 justify-center items-center hover:cursor-pointer">
+                      <img
+                        alt="minus-icon"
+                        src="/images/icon-minus.svg"
+                        onClick={() => {
+                          removeOneFromCart(index);
+                        }}
+                      />
+
+                      <img
+                        alt="trash-icon"
+                        src="/images/icon-delete.svg"
+                        onClick={() => {
+                          removeItemFromCart(index);
+                        }}
+                      />
                     </div>
                   </div>
                 );

@@ -1,5 +1,4 @@
 import { createContext, useState } from "react";
-import { shoeCollection } from "./shoeCollection";
 
 const CartContext = createContext();
 
@@ -39,7 +38,7 @@ function CartProvider(props) {
     // let itemToUpdate = cartItems.filter((item, i) => i == index);
     // console.log(itemToUpdate);
     cartItems[index].quantity -= 1;
-    if (cartItems[index].quantity == 0) {
+    if (cartItems[index].quantity === 0) {
       removeItemFromCart(index);
     } else {
       setCartItems([...cartItems]);

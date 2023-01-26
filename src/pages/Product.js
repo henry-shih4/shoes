@@ -12,18 +12,11 @@ export default function ProductDisplay() {
   const [showAddModal, setShowAddModal] = useState(false);
   const params = useParams();
   const [currentShoe, setCurrentShoe] = useState([]);
-  const [
-    totalCost,
-    cartItems,
-    addItemToCart,
-    removeItemFromCart,
-    removeOneFromCart,
-    getTotalCost,
-  ] = useContext(CartContext);
+  const [, , addItemToCart, , , ,] = useContext(CartContext);
 
   useEffect(() => {
     let shoe = shoeCollection.filter((shoe) => {
-      return shoe.id == params.id;
+      return shoe.id.toString() === params.id;
     });
     setCurrentShoe(shoe[0]);
   }, [params.id]);

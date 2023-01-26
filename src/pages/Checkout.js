@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useCallback } from "react";
 import { CartContext } from "../components/CartContext";
 import Lottie from "react-lottie-player";
 import lottieJson from "../check.json";
@@ -30,7 +30,7 @@ export default function Checkout() {
     getTotalCost();
   }, [cartItems, getTotalCost]);
 
-  function validateCardNo() {
+  const validateCardNo = useCallback(() => {
     const visaCardNoRegex = /^(?:4[0-9]{15})$/;
     const masterCardNoRegex = /^(?:5[1-5][0-9]{14})$/;
     const discoverCardNoRegex = /^(?:6(?:011|5[0-9][0-9])[0-9]{12})$/;
@@ -42,7 +42,7 @@ export default function Checkout() {
     } else if (card && card.match(discoverCardNoRegex)) {
       setCardCompany("discover");
     } else setCardCompany("");
-  }
+  }, [card]);
 
   useEffect(() => {
     validateCardNo(card);
@@ -229,6 +229,7 @@ export default function Checkout() {
                   <select
                     required
                     id="month"
+                    value={month}
                     className="w-1/2"
                     onChange={(e) => {
                       setMonth(e.target.value);
@@ -249,6 +250,7 @@ export default function Checkout() {
                   </select>
                   <select
                     required
+                    value={year}
                     id="year"
                     className="w-1/2"
                     onChange={(e) => {

@@ -3,7 +3,7 @@ export default function ItemAddModal(props) {
   return (
     <>
       <div className="w-[max] h-[40px] px-2 bg-slate-100 text-green-600 rounded-md flex justify-center items-center">
-        {name} added to cart.
+        {name} {variation} added to cart.
       </div>
     </>
   );

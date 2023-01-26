@@ -1,6 +1,6 @@
 import "./App.css";
 import Header from "./components/Header";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter} from "react-router-dom";
 import { CartProvider } from "./components/CartContext";
 import AnimatedRoutes from "./components/AnimatedRoutes";
 import React from "react";
