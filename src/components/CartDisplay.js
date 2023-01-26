@@ -1,6 +1,5 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { shoeCollection } from "./shoeCollection";
 import { CartContext } from "../components/CartContext";
 
 export default function CartDisplay(props) {
@@ -8,17 +7,17 @@ export default function CartDisplay(props) {
   const [
     totalCost,
     cartItems,
-    addItemToCart,
+    ,
     removeItemFromCart,
-    removeOneFromCart,
+    ,
     getTotalCost,
-    showCart,
+    ,
     toggleShowCart,
   ] = useContext(CartContext);
 
   useEffect(() => {
     getTotalCost();
-  }, [cartItems]);
+  }, [cartItems, getTotalCost]);
 
   return (
     <>
@@ -39,41 +38,39 @@ export default function CartDisplay(props) {
             {cartItems.length > 0 ? (
               cartItems.map((item, index) => {
                 return (
-                  <>
-                    <div key={index} className="flex px-3 justify-center">
-                      <div className="flex justify-center items-center w-1/3">
-                        <img
-                          alt={`item-${index}`}
-                          className="h-[80px] rounded-lg"
-                          src={item.image}
-                        />
-                      </div>
-                      <div className="w-2/3 flex flex-col justify-around items-center text-center font-raleway text-sm">
-                        <div className="w-full">{item.name}</div>
+                  <div key={index} className="flex px-3 justify-center">
+                    <div className="flex justify-center items-center w-1/3">
+                      <img
+                        alt={`item-${index}`}
+                        className="h-[80px] rounded-lg"
+                        src={item.image}
+                      />
+                    </div>
+                    <div className="w-2/3 flex flex-col justify-around items-center text-center font-raleway text-sm">
+                      <div className="w-full">{item.name}</div>
+                      <div>
+                        <div>Colorway {item.variation}</div>
                         <div>
-                          <div>Colorway {item.variation}</div>
-                          <div>
-                            Quantity:{" "}
-                            <span className="font-bold">{item.quantity}</span>
-                          </div>
-                          <div>
-                            Price:{" "}
-                            <span className="font-bold">
-                              ${item.quantity * item.price}
-                            </span>
-                          </div>
+                          Quantity:{" "}
+                          <span className="font-bold">{item.quantity}</span>
+                        </div>
+                        <div>
+                          Price:{" "}
+                          <span className="font-bold">
+                            ${item.quantity * item.price}
+                          </span>
                         </div>
                       </div>
-                      <div
-                        className="flex justify-center items-center hover:cursor-pointer"
-                        onClick={() => {
-                          removeItemFromCart(index);
-                        }}
-                      >
-                        <img alt="trash-icon" src="/images/icon-delete.svg" />
-                      </div>
                     </div>
-                  </>
+                    <div
+                      className="flex justify-center items-center hover:cursor-pointer"
+                      onClick={() => {
+                        removeItemFromCart(index);
+                      }}
+                    >
+                      <img alt="trash-icon" src="/images/icon-delete.svg" />
+                    </div>
+                  </div>
                 );
               })
             ) : (

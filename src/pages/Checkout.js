@@ -11,24 +11,24 @@ export default function Checkout() {
     removeItemFromCart,
     removeOneFromCart,
     getTotalCost,
-    showCart,
+    ,
     ,
     clearCart,
   ] = useContext(CartContext);
 
-  const [card, setCard] = useState();
+  const [card, setCard] = useState("");
   const [cardCompany, setCardCompany] = useState();
-  const [name, setName] = useState();
+  const [name, setName] = useState("");
   const [month, setMonth] = useState();
   const [year, setYear] = useState();
-  const [securityCode, setSecurityCode] = useState();
+  const [securityCode, setSecurityCode] = useState("");
   const [errorMsg, setErrorMsg] = useState();
   const [showCheckoutSuccessModal, setShowCheckoutSuccessModal] =
     useState(false);
 
   useEffect(() => {
     getTotalCost();
-  }, [cartItems]);
+  }, [cartItems, getTotalCost]);
 
   function validateCardNo() {
     const visaCardNoRegex = /^(?:4[0-9]{15})$/;
@@ -46,7 +46,7 @@ export default function Checkout() {
 
   useEffect(() => {
     validateCardNo(card);
-  }, [card]);
+  }, [card, validateCardNo]);
 
   function handleCheckoutSubmit(e) {
     e.preventDefault();
@@ -88,6 +88,7 @@ export default function Checkout() {
                 onClick={() => setShowCheckoutSuccessModal(false)}
               >
                 <img
+                  alt="close-icon"
                   className="hover:cursor-pointer"
                   src="/images/icon-close.svg"
                 />
@@ -114,56 +115,54 @@ export default function Checkout() {
             {cartItems.length > 0 ? (
               cartItems.map((item, index) => {
                 return (
-                  <>
-                    <div
-                      key={index}
-                      className="flex px-3 justify-center w-full min-w-[300px]"
-                    >
-                      <div className="flex justify-center items-center w-2/5">
-                        <img
-                          alt={`item-${index}`}
-                          className="h-[120px] rounded-lg"
-                          src={item.image}
-                        />
+                  <div
+                    key={index}
+                    className="flex px-3 justify-center w-full min-w-[300px]"
+                  >
+                    <div className="flex justify-center items-center w-2/5">
+                      <img
+                        alt={`item-${index}`}
+                        className="h-[120px] rounded-lg"
+                        src={item.image}
+                      />
+                    </div>
+                    <div className="w-2/5 flex flex-col justify-center items-center text-center font-raleway text-sm">
+                      <div className="w-full text-base font-bold">
+                        {item.name}
                       </div>
-                      <div className="w-2/5 flex flex-col justify-center items-center text-center font-raleway text-sm">
-                        <div className="w-full text-base font-bold">
-                          {item.name}
+                      <div className="space-y-1">
+                        <div>Colorway {item.variation}</div>
+                        <div>
+                          Quantity:{" "}
+                          <span className="font-bold">{item.quantity}</span>
                         </div>
-                        <div className="space-y-1">
-                          <div>Colorway {item.variation}</div>
-                          <div>
-                            Quantity:{" "}
-                            <span className="font-bold">{item.quantity}</span>
-                          </div>
-                          <div>
-                            Price:{" "}
-                            <span className="font-bold">
-                              ${item.quantity * item.price}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="w-1/5 flex justify-center items-center">
-                        <div
-                          className="h-1/2 w-1/2 flex justify-center items-center hover:cursor-pointer"
-                          onClick={() => {
-                            removeOneFromCart(index);
-                          }}
-                        >
-                          <img alt="minus-icon" src="/images/icon-minus.svg" />
-                        </div>
-                        <div
-                          className="h-1/2 w-1/2 flex justify-center items-center hover:cursor-pointer"
-                          onClick={() => {
-                            removeItemFromCart(index);
-                          }}
-                        >
-                          <img alt="trash-icon" src="/images/icon-delete.svg" />
+                        <div>
+                          Price:{" "}
+                          <span className="font-bold">
+                            ${item.quantity * item.price}
+                          </span>
                         </div>
                       </div>
                     </div>
-                  </>
+                    <div className="w-1/5 flex justify-center items-center">
+                      <div
+                        className="h-1/2 w-1/2 flex justify-center items-center hover:cursor-pointer"
+                        onClick={() => {
+                          removeOneFromCart(index);
+                        }}
+                      >
+                        <img alt="minus-icon" src="/images/icon-minus.svg" />
+                      </div>
+                      <div
+                        className="h-1/2 w-1/2 flex justify-center items-center hover:cursor-pointer"
+                        onClick={() => {
+                          removeItemFromCart(index);
+                        }}
+                      >
+                        <img alt="trash-icon" src="/images/icon-delete.svg" />
+                      </div>
+                    </div>
+                  </div>
                 );
               })
             ) : (
@@ -265,12 +264,7 @@ export default function Checkout() {
                   </select>
                 </div>
               </div>
-              <div
-                className="w-1/2 flex flex-col justify-center items-center"
-                onChange={(e) => {
-                  setSecurityCode(e.target.value);
-                }}
-              >
+              <div className="w-1/2 flex flex-col justify-center items-center">
                 <label htmlFor="security-code">
                   <p>Security Code</p>
                 </label>
@@ -281,6 +275,9 @@ export default function Checkout() {
                   id="security-code"
                   name="security-code"
                   className="w-1/2"
+                  onChange={(e) => {
+                    setSecurityCode(e.target.value);
+                  }}
                 />
               </div>
             </div>

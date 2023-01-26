@@ -8,6 +8,7 @@ export default function Home() {
   const [activeShoe, setActiveShoe] = useState("white");
   const control = useAnimation();
   const [ref, inView] = useInView();
+  const [email, setEmail] = useState();
 
   const container = {
     hidden: { opacity: 0 },
@@ -59,6 +60,7 @@ export default function Home() {
                   </div>
                   <div className="h-max pb-4 min-w-[200px] max-w-[350px] flex justify-center items-center m-auto md:hidden">
                     <img
+                      alt="hero-shoe"
                       key={activeShoe}
                       className="min-w-[240px] max-h-[200px] flex justify-center items-center animate-fade"
                       src={`/images/hero-shoe-${activeShoe}.png`}
@@ -84,6 +86,7 @@ export default function Home() {
                   key={activeShoe}
                 >
                   <m.img
+                    alt="hero-shoe"
                     className="min-w-[340px] max-h-[300px]"
                     src={`/images/hero-shoe-${activeShoe}.png`}
                   />
@@ -102,6 +105,7 @@ export default function Home() {
                     }}
                   >
                     <img
+                      alt="hero-shoe-org"
                       className=" w-[120px] lg:w-[140px] hover:scale-105 duration-300 cursor-pointer"
                       src={
                         activeShoe === "orange"
@@ -123,6 +127,7 @@ export default function Home() {
                     }}
                   >
                     <img
+                      alt="hero-shoe-red"
                       className="w-[120px] lg:w-[140px] hover:scale-105 duration-300  cursor-pointer"
                       src={
                         activeShoe === "red"
@@ -148,6 +153,7 @@ export default function Home() {
                     }}
                   >
                     <img
+                      alt="hero-shoe-blue"
                       className="w-[120px] lg:w-[140px] hover:scale-105 duration-300  cursor-pointer"
                       src={
                         activeShoe === "blue"
@@ -214,14 +220,24 @@ export default function Home() {
           </div>
           <div className="mt-4 h-full w-full">
             <div className="bg-main h-full w-full bg-cover  flex justify-center items-center">
-              <div className="flex flex-col space-y-2 justify-center items-center">
-                <label forHTML="signup font-raleway">
-                  Sign Up for Exclusive Deals
-                </label>
-                <input id="signup" />
-                <button className="w-[160px] h-[40px] w-full bg-orange-400 rounded-lg font-bebas text-xl tracking-widest border-slate-300 border-2 hover:shadow-[inset_200px_0_0_0] hover:shadow-white duration-[400ms,800ms] transition-[color,box-shadow] hover:text-orange-500">
-                  SIGN UP
-                </button>
+              <div>
+                <form className="flex flex-col space-y-2 justify-center items-center">
+                  <label htmlFor="signup font-raleway">
+                    Sign Up for Exclusive Deals
+                  </label>
+                  <input
+                    required
+                    id="signup"
+                    type="email"
+                    value={email}
+                    onChange={() => {
+                      setEmail(email);
+                    }}
+                  />
+                  <button className="w-[160px] h-[40px] bg-orange-400 rounded-lg font-bebas text-xl tracking-widest border-slate-300 border-2 hover:shadow-[inset_200px_0_0_0] hover:shadow-white duration-[400ms,800ms] transition-[color,box-shadow] hover:text-orange-500">
+                    SIGN UP
+                  </button>
+                </form>
               </div>
             </div>
           </div>

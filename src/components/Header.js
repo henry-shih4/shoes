@@ -1,4 +1,4 @@
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import CartDisplay from "./CartDisplay";
 import { CartContext } from "../components/CartContext";
@@ -9,7 +9,6 @@ export default function Header() {
     useContext(CartContext);
   const [totalQuantity, setTotalQuantity] = useState(0);
   const navigate = useNavigate();
-  const location = useLocation();
 
   useEffect(() => {
     let numItems = cartItems
