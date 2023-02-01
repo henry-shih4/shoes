@@ -167,7 +167,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className=" h-screen w-screen flex flex-col justify-start items-center text-white ">
+        <div className="h-max w-screen flex flex-col justify-start items-center text-white ">
           <div className="pt-4 mb-4 flex flex-col justify-center items-center w-[80%] h-max">
             <m.div
               variants={container}
@@ -218,7 +218,7 @@ export default function Home() {
               </m.div>
             </m.div>
           </div>
-          <div className="mt-4 h-full w-full">
+          <div className="mt-4 h-[50vh] min-h-[300px] w-full">
             <div className="bg-main h-full w-full bg-cover  flex justify-center items-center">
               <div>
                 <form className="flex flex-col space-y-2 justify-center items-center">

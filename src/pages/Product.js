@@ -41,7 +41,7 @@ export default function ProductDisplay() {
         exit={{ scale: 1 }}
         className="absolute top-[96px] flex justify-center items-center min-h-[calc(100vh-96px)] w-full min-w-[320px] bg-white"
       >
-        <div className="w-[100%] flex flex-col justify-start items-center m-auto my-4 gap-y-4 md:flex-row md:w-[85%] lg:w-[75%] lg:lg:gap-x-14">
+        <div className="bg-white pb-10 w-[100%] flex flex-col justify-start items-center m-auto my-4 gap-y-4 md:flex-row md:w-[85%] lg:w-[75%] lg:gap-x-14">
           <div className=" flex flex-col justify-center items-center w-1/2 min-w-[320px] gap-y-6 lg:items-end">
             <div
               className="w-full"
