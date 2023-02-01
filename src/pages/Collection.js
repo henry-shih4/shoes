@@ -12,9 +12,9 @@ export default function Collection() {
         animate={{ y: "0%" }}
         transition={{ duration: 0.75, ease: "easeOut" }}
         exit={{ opacity: 1 }}
-        className="absolute top-[96px]  bg-white flex justify-center items-center h-max min-h-[calc(100vh-96px)] w-screen md:items-start "
+        className="bg-white absolute top-[96px]  flex justify-center items-center h-max min-h-[calc(100vh-96px)] w-screen md:items-start "
       >
-        <div className="h-full w-[90%] flex flex-col justify-center items-center font-raleway">
+        <div className="bg-white h-max w-[90%] flex flex-col justify-center items-center font-raleway">
           <div className="w-[80%] flex justify-center items-center my-4 md:justify-start">
             <div className="flex flex-col min-w-[300px] max-w-[520px] gap-y-3 ">
               <div className="mt-4 text-3xl font-bold flex justify-start items-start w-full">
