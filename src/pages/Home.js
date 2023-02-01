@@ -43,7 +43,7 @@ export default function Home() {
         transition={{ duration: 0.75, ease: "easeOut" }}
         exit={{ opacity: 1 }}
         id="main-background"
-        className="h-max w-screen bg-slate-400"
+        className="h-max w-screen bg-slate-400 overflow-y-auto"
       >
         <div className=" flex flex-col pt-[96px] min-h-screen justify-center items-center w-full  md:justify-center text-white">
           <div className="flex flex-col justify-center items-center md:flex-row">
