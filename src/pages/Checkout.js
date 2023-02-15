@@ -25,6 +25,11 @@ export default function Checkout() {
   const [errorMsg, setErrorMsg] = useState();
   const [showCheckoutSuccessModal, setShowCheckoutSuccessModal] =
     useState(false);
+  const [address, setAddress] = useState("");
+  const [email, setEmail] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [zipcode, setZipcode] = useState("");
 
   useEffect(() => {
     getTotalCost();
@@ -175,112 +180,194 @@ export default function Checkout() {
             Total: <span className="font-bold">${totalCost}</span>
           </div>
         </div>
-        <div className="w-[320px] min-w-[300px] min-h-[200px] py-4 mb-4 bg-orange-300 flex justify-center items-center rounded-lg">
+        <div className="w-[320px] min-w-[300px] min-h-[200px] py-4 mb-4 bg-orange-300 flex justify-center items-center rounded-lg md:w-full">
           <form
             onSubmit={(e) => {
               handleCheckoutSubmit(e);
             }}
             id="checkout-form"
-            className="w-[320px] min-w-[300px] flex flex-col justify-center items-center gap-y-4"
+            className="w-[320px] min-w-[300px] flex flex-col justify-center items-center gap-y-4 md:min-w-[500px] md:px-4 "
           >
-            <div className="flex flex-col w-[85%]">
-              <label htmlFor="name">
-                <p>Name on Card</p>
-              </label>
-              <input
-                value={name}
-                maxLength={32}
-                required
-                type="text"
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
-              />
-            </div>
-            <div className="flex flex-col w-[85%]">
-              <label className="flex gap-x-3 " htmlFor="card-no">
-                <p>Card Number</p>
-                <div>
-                  {cardCompany ? (
-                    <img
-                      alt="card-company-logo"
-                      src={`/images/${cardCompany}-logo.svg`}
-                    />
-                  ) : null}
+            <div className="flex flex-col md:flex-row w-[90%] gap-y-4 md:gap-x-10">
+              <div className="flex flex-col justify-center items-center">
+                <div className="flex flex-col w-[85%] text-center mb-2 underline">
+                  Shipping Information
                 </div>
-              </label>
-              <input
-                maxLength={16}
-                required
-                type="text"
-                id="card-no"
-                value={card}
-                onChange={(e) => {
-                  setCard(e.target.value);
-                }}
-              />
-            </div>
-            <div className="flex justify-center items-center">
-              <div className="w-1/2 flex flex-col justify-center items-center">
-                <label htmlFor="expiration">
-                  <p>Expiration (mm/yy)</p>
-                </label>
-                <div id="expiration" className="flex space-x-3">
-                  <select
+                <div className="flex flex-col w-full">
+                  <label htmlFor="address">
+                    <p>Address</p>
+                  </label>
+                  <input
+                    value={address}
+                    maxLength={50}
                     required
-                    id="month"
-                    value={month}
-                    className="w-1/2"
+                    type="text"
                     onChange={(e) => {
-                      setMonth(e.target.value);
+                      setAddress(e.target.value);
                     }}
-                  >
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                  </select>
-                  <select
+                  />
+                  <label htmlFor="city">
+                    <p>City</p>
+                  </label>
+                  <input
+                    value={city}
+                    maxLength={50}
                     required
-                    value={year}
-                    id="year"
-                    className="w-1/2"
+                    type="text"
                     onChange={(e) => {
-                      setYear(e.target.value);
+                      setCity(e.target.value);
                     }}
-                  >
-                    <option value="23">23</option>
-                    <option value="24">24</option>
-                    <option value="25">25</option>
-                    <option value="25">26</option>
-                    <option value="25">27</option>
-                    <option value="25">28</option>
-                  </select>
+                  />
+
+                  <label htmlFor="state">
+                    <p>State</p>
+                  </label>
+                  <input
+                    value={state}
+                    maxLength={50}
+                    required
+                    type="text"
+                    onChange={(e) => {
+                      setState(e.target.value);
+                    }}
+                  />
+                  <label htmlFor="zipcode">
+                    <p>Zipcode</p>
+                  </label>
+                  <input
+                    value={zipcode}
+                    maxLength={11}
+                    required
+                    type="text"
+                    onChange={(e) => {
+                      setZipcode(e.target.value);
+                    }}
+                  />
                 </div>
               </div>
-              <div className="w-1/2 flex flex-col justify-center items-center">
-                <label htmlFor="security-code">
-                  <p>Security Code</p>
-                </label>
-                <input
-                  value={securityCode}
-                  maxLength={4}
-                  required
-                  id="security-code"
-                  name="security-code"
-                  className="w-1/2"
-                  onChange={(e) => {
-                    setSecurityCode(e.target.value);
-                  }}
-                />
+              <div className="flex flex-col justify-center items-center">
+                <div className="flex flex-col w-[85%] text-center mb-2 underline">
+                  Payment Information
+                </div>
+                <div className="flex flex-col w-full">
+                  <label htmlFor="name">
+                    <p>Name on Card</p>
+                  </label>
+                  <input
+                    value={name}
+                    maxLength={32}
+                    required
+                    type="text"
+                    onChange={(e) => {
+                      setName(e.target.value);
+                    }}
+                  />
+                </div>
+                <div className="flex flex-col w-full">
+                  <label className="flex gap-x-3 " htmlFor="card-no">
+                    <p>Card Number</p>
+                    <div>
+                      {cardCompany ? (
+                        <img
+                          alt="card-company-logo"
+                          src={`/images/${cardCompany}-logo.svg`}
+                        />
+                      ) : null}
+                    </div>
+                  </label>
+                  <input
+                    maxLength={16}
+                    required
+                    type="text"
+                    id="card-no"
+                    value={card}
+                    onChange={(e) => {
+                      setCard(e.target.value);
+                    }}
+                  />
+                </div>
+                <div className="flex justify-center items-center w-full">
+                  <div className="w-1/2 flex flex-col justify-center items-center h-[60px]">
+                    <label htmlFor="expiration">
+                      <p className="text-sm">
+                        Exp <span className="text-xs">(mm/yy)</span>
+                      </p>
+                    </label>
+                    <div id="expiration" className="flex space-x-3">
+                      <select
+                        required
+                        id="month"
+                        value={month}
+                        className="w-1/2 h-[28px] text-sm"
+                        onChange={(e) => {
+                          setMonth(e.target.value);
+                        }}
+                      >
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                      </select>
+                      <select
+                        required
+                        value={year}
+                        id="year"
+                        className="w-1/2 text-sm"
+                        onChange={(e) => {
+                          setYear(e.target.value);
+                        }}
+                      >
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="25">26</option>
+                        <option value="25">27</option>
+                        <option value="25">28</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div className="w-1/2 flex flex-col justify-center items-center h-[60px]">
+                    <label
+                      className="flex justify-center items-center h-[32px]"
+                      htmlFor="security-code"
+                    >
+                      <p className="text-sm">Security Code</p>
+                    </label>
+                    <input
+                      value={securityCode}
+                      maxLength={4}
+                      required
+                      id="security-code"
+                      name="security-code"
+                      className="w-1/2 h-[28px] text-sm"
+                      onChange={(e) => {
+                        setSecurityCode(e.target.value);
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className="flex flex-col w-full">
+                  <label htmlFor="email">
+                    <p>Email</p>
+                  </label>
+                  <input
+                    value={email}
+                    maxLength={50}
+                    required
+                    type="email"
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                    }}
+                  />
+                </div>
               </div>
             </div>
             <div className="flex flex-col justify-center items-center gap-y-2">
