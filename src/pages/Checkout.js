@@ -126,6 +126,7 @@ export default function Checkout() {
                   >
                     <div className="flex justify-center items-center w-2/5">
                       <img
+                        crossorigin="anonymous"
                         alt={`item-${index}`}
                         className="h-[120px] rounded-lg"
                         src={item.image}

@@ -42,6 +42,7 @@ export default function CartDisplay(props) {
                   <div key={index} className="flex px-3 justify-center">
                     <div className="flex justify-center items-center w-1/3">
                       <img
+                        crossorigin="anonymous"
                         alt={`item-${index}`}
                         className="h-[80px] rounded-lg"
                         src={item.image}

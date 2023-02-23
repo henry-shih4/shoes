@@ -1,9 +1,9 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { shoeCollection } from "../components/shoeCollection";
 import { CartContext } from "../components/CartContext";
 import ItemAddModal from "../components/ItemAddModal";
 import { motion as m } from "framer-motion";
+import { ShoesContext } from "../components/ShoesContext";
 
 export default function ProductDisplay() {
   const navigate = useNavigate();
@@ -13,13 +13,16 @@ export default function ProductDisplay() {
   const params = useParams();
   const [currentShoe, setCurrentShoe] = useState([]);
   const [, , addItemToCart, , , ,] = useContext(CartContext);
+  const [shoes, url, loading] = useContext(ShoesContext);
 
   useEffect(() => {
-    let shoe = shoeCollection.filter((shoe) => {
-      return shoe.id.toString() === params.id;
-    });
-    setCurrentShoe(shoe[0]);
-  }, [params.id]);
+    if (shoes) {
+      let shoe = shoes.filter((shoe) => {
+        return shoe._id.toString() === params.id;
+      });
+      setCurrentShoe(shoe[0]);
+    }
+  }, [params.id, shoes]);
 
   useEffect(() => {
     setQuantity(0);
@@ -34,6 +37,7 @@ export default function ProductDisplay() {
 
   return (
     <>
+      {loading ? <h1>loading ...</h1> : null}
       <m.div
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
@@ -58,7 +62,12 @@ export default function ProductDisplay() {
             <div className="h-max w-3/5 min-w-[300px] relative ">
               <img
                 className="min-h-[300px] rounded-2xl"
-                src={currentShoe[`main_image${activeImage}`]}
+                crossorigin="anonymous"
+                src={
+                  currentShoe.color1
+                    ? url + currentShoe[`color${activeImage}`].image
+                    : null
+                }
                 alt={"selected-shoe"}
               />
             </div>
@@ -77,7 +86,10 @@ export default function ProductDisplay() {
                       : "h-full w-full rounded-xl"
                   }
                   alt="shoe-color-1"
-                  src={currentShoe.main_image1}
+                  crossorigin="anonymous"
+                  src={
+                    currentShoe.color1 ? url + currentShoe.color1.image : null
+                  }
                   onClick={() => {
                     setActiveImage("1");
                   }}
@@ -97,7 +109,10 @@ export default function ProductDisplay() {
                       : "h-full w-full rounded-xl"
                   }
                   alt="shoe-color-2"
-                  src={currentShoe.main_image2}
+                  crossorigin="anonymous"
+                  src={
+                    currentShoe.color1 ? url + currentShoe.color2.image : null
+                  }
                   onClick={() => {
                     setActiveImage("2");
                   }}
@@ -117,7 +132,10 @@ export default function ProductDisplay() {
                       : "h-full w-full rounded-xl"
                   }
                   alt="shoe-color-3"
-                  src={currentShoe.main_image3}
+                  crossorigin="anonymous"
+                  src={
+                    currentShoe.color1 ? url + currentShoe.color3.image : null
+                  }
                   onClick={() => {
                     setActiveImage("3");
                   }}
@@ -137,7 +155,10 @@ export default function ProductDisplay() {
                       : "h-full w-full rounded-xl"
                   }
                   alt="shoe-color-4"
-                  src={currentShoe.main_image4}
+                  crossorigin="anonymous"
+                  src={
+                    currentShoe.color1 ? url + currentShoe.color4.image : null
+                  }
                   onClick={() => {
                     setActiveImage("4");
                   }}
@@ -169,7 +190,7 @@ export default function ProductDisplay() {
                     </div>
                   </div>
                   <div className="text-slate-400 line-through">
-                    ${currentShoe.old_price}
+                    ${currentShoe.oldPrice}
                   </div>
                 </div>
 
@@ -200,9 +221,10 @@ export default function ProductDisplay() {
                         if (quantity > 0) {
                           addItemToCart({
                             name: currentShoe.name,
-                            id: currentShoe.id,
+                            id: currentShoe._id,
                             variation: activeImage,
-                            image: currentShoe[`main_image${activeImage}`],
+                            image:
+                              url + currentShoe[`color${activeImage}`].image,
                             quantity: quantity,
                             price: currentShoe.price,
                           });

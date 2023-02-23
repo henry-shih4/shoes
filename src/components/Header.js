@@ -23,13 +23,13 @@ export default function Header() {
       <div
         className={
           showNav
-            ? "p-6 absolute left-0 top-0 h-full w-[300px] bg-white z-[100] translate-x-0 transition-all duration-700"
-            : "invisible translate-x-[-100%] transition-all duration-700 p-6 absolute left-0 top-0 h-full w-[300px] bg-white"
+            ? "p-6 fixed top-0 w-1/2 h-full bg-white z-[100] translate-x-0 transition duration-700 "
+            : "translate-x-[-100%] p-6 fixed  top-0 h-full w-1/2 bg-white z-[100]  transition duration-700"
         }
       >
         <div className="space-y-10">
           <div
-            className="mb-4 hover:cursor-pointer "
+            className="mb-4 w-[20px] hover:cursor-pointer"
             onClick={() => {
               setShowNav(false);
             }}
