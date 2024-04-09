@@ -57,6 +57,14 @@ export default function Header() {
             >
               Collections
             </li>
+            <li
+              onClick={() => {
+                navigate("/login");
+                setShowNav(false);
+              }}
+            >
+              Login
+            </li>
           </ul>
         </div>
       </div>
@@ -108,6 +116,14 @@ export default function Header() {
                   }}
                 >
                   Collections
+                </li>
+                <li
+                  onClick={() => {
+                    navigate("/login");
+                    setShowNav(false);
+                  }}
+                >
+                  Login
                 </li>
               </ul>
             </div>
