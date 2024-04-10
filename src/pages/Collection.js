@@ -42,7 +42,7 @@ export default function Collection() {
                           navigate(`/collection/${shoe._id}`);
                         }}
                         alt={`shoe-${shoe._id}`}
-                        className="w-[200px] rounded-xl hover:cursor-pointer mb-2"
+                        className="w-[200px] h-[200px] rounded-xl hover:cursor-pointer mb-2 object-cover"
                         src={url + shoe.color1.image}
                       />
                       <h1 className="text-lg">{shoe.name}</h1>

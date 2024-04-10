@@ -47,11 +47,14 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center gap-y-4">
+    <div className="bg-orange-400 pt-40 h-[100vh] flex justify-start items-center flex-col gap-y-8">
       <h2>Registration Page</h2>
 
-      <form onSubmit={handleFormSubmit}>
-        <div>
+      <form
+        className="flex flex-col justify-center items-start gap-y-4"
+        onSubmit={handleFormSubmit}
+      >
+        <div className="flex flex-col gap-x-4">
           <label htmlFor="username">Email:</label>
           <input
             type="email"
@@ -61,7 +64,7 @@ export default function LoginPage() {
             required
           />
         </div>
-        <div>
+        <div className="flex flex-col gap-x-4">
           <label htmlFor="username">Create a Username:</label>
           <input
             type="text"
@@ -71,7 +74,7 @@ export default function LoginPage() {
             required
           />
         </div>
-        <div>
+        <div className="flex flex-col gap-x-4">
           <label htmlFor="password">Password:</label>
           <input
             type="password"
@@ -82,7 +85,7 @@ export default function LoginPage() {
           />
         </div>
 
-        <div>
+        <div className="flex flex-col gap-x-4">
           <label htmlFor="password2">Verify Password:</label>
           <input
             type="password"
@@ -92,7 +95,12 @@ export default function LoginPage() {
             required
           />
         </div>
-        <button type="submit">Register</button>
+        <button
+          className="bg-slate-300 rounded-md py-4 w-[100px]"
+          type="submit"
+        >
+          Register
+        </button>
       </form>
       <div>
         Already a user? <a href="/login">Login here</a>

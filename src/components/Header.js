@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import CartDisplay from "./CartDisplay";
 import { CartContext } from "../components/CartContext";
+import { LoginContext } from "../Context/LoginContext";
 
 export default function Header() {
   const [showNav, setShowNav] = useState(false);
@@ -9,6 +10,7 @@ export default function Header() {
     useContext(CartContext);
   const [totalQuantity, setTotalQuantity] = useState(0);
   const navigate = useNavigate();
+const [isLoggedIn] = useContext(LoginContext);
 
   useEffect(() => {
     let numItems = cartItems
@@ -117,6 +119,7 @@ export default function Header() {
                 >
                   Collections
                 </li>
+                {!isLoggedIn?
                 <li
                   onClick={() => {
                     navigate("/login");
@@ -124,6 +127,14 @@ export default function Header() {
                   }}
                 >
                   Login
+                </li>:null}
+                <li
+                  onClick={() => {
+                    navigate("/orders");
+                    setShowNav(false);
+                  }}
+                >
+                  Orders
                 </li>
               </ul>
             </div>

@@ -61,7 +61,7 @@ export default function ProductDisplay() {
             </div>
             <div className="h-max w-3/5 min-w-[300px] relative ">
               <img
-                className="min-h-[300px] rounded-2xl"
+                className="min-h-[300px] max-h-[400px] object-fit rounded-2xl"
                 crossorigin="anonymous"
                 src={
                   currentShoe.color1
@@ -75,15 +75,15 @@ export default function ProductDisplay() {
               <div
                 className={
                   activeImage === "1"
-                    ? "border-2 border-orange-400 min-h-[64px] min-w-[64px] max-h-[80px] max-w-[80px] rounded-xl hover:cursor-pointer"
-                    : "min-h-[64px] min-w-[64px] max-h-[80px] max-w-[80px] rounded-xl hover:cursor-pointer"
+                    ? "border-2 border-orange-400  rounded-xl hover:cursor-pointer"
+                    : "rounded-xl hover:cursor-pointer"
                 }
               >
                 <img
                   className={
                     activeImage === "1"
-                      ? "opacity-50 h-full w-full rounded-xl"
-                      : "h-full w-full rounded-xl"
+                      ? "opacity-50 max-h-[80px] w-full rounded-xl"
+                      : "max-h-[80px] w-full rounded-xl"
                   }
                   alt="shoe-color-1"
                   crossorigin="anonymous"
@@ -98,15 +98,15 @@ export default function ProductDisplay() {
               <div
                 className={
                   activeImage === "2"
-                    ? "border-2 border-orange-400 min-h-[64px] min-w-[64px] max-h-[80px] max-w-[80px] rounded-xl hover:cursor-pointer"
-                    : "min-h-[64px] min-w-[64px] max-h-[80px] max-w-[80px] rounded-xl hover:cursor-pointer"
+                    ? "border-2 border-orange-400  rounded-xl hover:cursor-pointer"
+                    : " rounded-xl hover:cursor-pointer"
                 }
               >
                 <img
                   className={
                     activeImage === "2"
-                      ? "opacity-50 h-full w-full rounded-xl"
-                      : "h-full w-full rounded-xl"
+                      ? "opacity-50 max-h-[80px] w-full rounded-xl"
+                      : "max-h-[80px] w-full rounded-xl"
                   }
                   alt="shoe-color-2"
                   crossorigin="anonymous"
@@ -121,15 +121,15 @@ export default function ProductDisplay() {
               <div
                 className={
                   activeImage === "3"
-                    ? "border-2 border-orange-400 min-h-[64px] min-w-[64px] max-h-[80px] max-w-[80px] rounded-xl hover:cursor-pointer"
-                    : "min-h-[64px] min-w-[64px] max-h-[80px] max-w-[80px] rounded-xl hover:cursor-pointer"
+                    ? "border-2 border-orange-400  rounded-xl hover:cursor-pointer"
+                    : " rounded-xl hover:cursor-pointer"
                 }
               >
                 <img
                   className={
                     activeImage === "3"
-                      ? "opacity-50 h-full w-full rounded-xl"
-                      : "h-full w-full rounded-xl"
+                      ? "opacity-50 max-h-[80px] w-full rounded-xl"
+                      : "max-h-[80px] w-full rounded-xl"
                   }
                   alt="shoe-color-3"
                   crossorigin="anonymous"
@@ -144,15 +144,15 @@ export default function ProductDisplay() {
               <div
                 className={
                   activeImage === "4"
-                    ? "border-2 border-orange-400 min-h-[64px] min-w-[64px] max-h-[80px] max-w-[80px] rounded-xl hover:cursor-pointer"
-                    : "min-h-[64px] min-w-[64px] max-h-[80px] max-w-[80px] rounded-xl hover:cursor-pointer"
+                    ? "border-2 border-orange-400  rounded-xl hover:cursor-pointer"
+                    : " rounded-xl hover:cursor-pointer"
                 }
               >
                 <img
                   className={
                     activeImage === "4"
-                      ? "opacity-50 h-full w-full rounded-xl"
-                      : "h-full w-full rounded-xl"
+                      ? "opacity-50 max-h-[80px] w-full rounded-xl"
+                      : "max-h-[80px] w-full rounded-xl"
                   }
                   alt="shoe-color-4"
                   crossorigin="anonymous"
