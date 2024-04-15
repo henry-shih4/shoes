@@ -9,16 +9,13 @@ export default function Orders() {
 
   let token = localStorage.getItem("token");
   const headers = useMemo(() => {
-    return {"Content-Type": "application/json",
-    Authorization: `Bearer ${token}`,
-  }
-  },[token]);
+    return {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    };
+  }, [token]);
 
-
-  
   const getOrders = useCallback(async () => {
-
-    
     const userOrders = await axios
       .get(
         `https://rebound-shoes-api.adaptable.app/api/v1/orders/${activeUser._id}`,
@@ -30,9 +27,8 @@ export default function Orders() {
         console.log(error);
         return error;
       });
-    console.log(userOrders);
     setOrders(userOrders.data.data);
-  },[headers,activeUser._id]);
+  }, [headers, activeUser._id]);
 
   useEffect(() => {
     if (activeUser._id) {
@@ -58,10 +54,10 @@ export default function Orders() {
                 <h3>Order Number: {order._id}</h3>
                 <div className="flex justify-start flex-col">
                   <h3>Items in Order</h3>
-                  <div className="flex">
+                  <div className="flex gap-x-4">
                     {order.products.map((product) => {
                       return (
-                        <div>
+                        <div key={`${product._id}-${product.color}`}>
                           <div className="flex flex-col gap-y-2">
                             {product.name}-{product.color}
                           </div>

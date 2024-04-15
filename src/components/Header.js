@@ -48,6 +48,11 @@ export default function Header() {
               src="/images/icon-close.svg"
             />
           </div>
+          <img
+            className="w-[120px]"
+            alt="company-logo"
+            src="/images/rebound-logo-orange.png"
+          />
           <ul className="flex flex-col gap-y-4 font-bold">
             <li
               onClick={() => {
@@ -65,6 +70,18 @@ export default function Header() {
             >
               Collections
             </li>
+            {isLoggedIn ? (
+              <li onClick={handleLogout}>Logout</li>
+            ) : (
+              <li
+                onClick={() => {
+                  navigate("/login");
+                  setShowNav(false);
+                }}
+              >
+                Login
+              </li>
+            )}
           </ul>
         </div>
       </div>
@@ -72,7 +89,7 @@ export default function Header() {
       {/*Header for all pages*/}
       <div
         className={
-          "absolute top-0 w-full h-24 flex justify-center items-center bg-[#000] text-white z-50"
+          "absolute top-0 w-full h-28 flex justify-center items-center bg-[#000] text-white z-50"
         }
       >
         <div className="relative w-full h-full flex justify-between items-center md:absolute">
@@ -92,12 +109,16 @@ export default function Header() {
               />
             </div>
             <div
-              className="mx-2 min-w-[100px] hover:cursor-pointer"
+              className="mx-2 min-w-[120px] hover:cursor-pointer"
               onClick={() => {
                 navigate("/");
               }}
             >
-              <img alt="company-logo" src="/images/logo.svg" />
+              <img
+                className="w-[120px] pl-4"
+                alt="company-logo"
+                src="/images/rebound-logo-white.png"
+              />
             </div>
             <div className="h-full">
               <ul className="h-full hidden  md:flex justify-center items-center gap-x-4">
@@ -118,6 +139,7 @@ export default function Header() {
                   Collections
                 </li>
                 <li
+                  className="rounded-lg flex justify-center items-center hover:bg-white hover:text-black h-[50%] w-[100px] transition-all duration-[500ms]"
                   onClick={() => {
                     navigate("/orders");
                     setShowNav(false);
@@ -126,9 +148,15 @@ export default function Header() {
                   Orders
                 </li>
                 {isLoggedIn ? (
-                  <li onClick={handleLogout}>Logout</li>
+                  <li
+                    className="rounded-lg flex justify-center items-center hover:bg-white hover:text-black h-[50%] w-[100px] transition-all duration-[500ms]"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </li>
                 ) : (
                   <li
+                    className="rounded-lg flex justify-center items-center hover:bg-white hover:text-black h-[50%] w-[100px] transition-all duration-[500ms]"
                     onClick={() => {
                       navigate("/login");
                       setShowNav(false);

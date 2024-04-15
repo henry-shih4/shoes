@@ -3,7 +3,7 @@ import { CartContext } from "../components/CartContext";
 import { LoginContext } from "../Context/LoginContext";
 import Lottie from "react-lottie-player";
 import lottieJson from "../check.json";
-import axios from 'axios'
+import axios from "axios";
 
 export default function Checkout() {
   const [
@@ -18,7 +18,7 @@ export default function Checkout() {
     clearCart,
   ] = useContext(CartContext);
 
-  const [activeUser,,] = useContext(LoginContext);
+  const [activeUser, ,] = useContext(LoginContext);
   const [card, setCard] = useState("");
   const [cardCompany, setCardCompany] = useState();
   const [name, setName] = useState("");
@@ -33,6 +33,7 @@ export default function Checkout() {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [zipcode, setZipcode] = useState("");
+  const [error, setError] = useState("");
 
   let token = localStorage.getItem("token");
   const headers = {
@@ -62,23 +63,30 @@ export default function Checkout() {
     validateCardNo(card);
   }, [card, validateCardNo]);
 
-    async function addOrder(items) {
-      try {
-        const response = await axios.post(
-          "https://rebound-shoes-api.adaptable.app/api/v1/orders",
-          {
-            products: items,
-            user: activeUser._id,
-            totalPrice: totalCost,
-          },
-          { headers }
-        );
-       console.log("Order successful:", response.data);
-      } catch (error) {
-        console.log(error);
-      }
+  async function addOrder(items) {
+    try {
+      const response = await axios.post(
+        "https://rebound-shoes-api.adaptable.app/api/v1/orders",
+        {
+          products: items,
+          user: activeUser._id,
+          totalPrice: totalCost,
+        },
+        { headers }
+      );
+      console.log("Order successful:", response.data);
+      setShowCheckoutSuccessModal(true);
+      clearCart();
+      setName("");
+      setCard("");
+      setSecurityCode("");
+      setMonth("");
+      setYear("");
+    } catch (error) {
+      console.log(error);
+      setError("Login to perform checkout.");
     }
-  
+  }
 
   function handleCheckoutSubmit(e) {
     e.preventDefault();
@@ -93,13 +101,6 @@ export default function Checkout() {
       setErrorMsg("invalid card, please try again");
     } else {
       addOrder(cartItems);
-      setShowCheckoutSuccessModal(true);
-      clearCart();
-      setName("");
-      setCard("");
-      setSecurityCode("");
-      setMonth("");
-      setYear("");
     }
   }
 
@@ -409,6 +410,7 @@ export default function Checkout() {
               </p>
             </div>
           </form>
+          {error && <div style={{ color: "red" }}>{error}</div>}
         </div>
       </div>
     </>

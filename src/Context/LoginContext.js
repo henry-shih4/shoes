@@ -12,7 +12,7 @@ function LoginProvider(props) {
   useEffect(() => {
 if (!token) {
   setIsLoggedIn(false);
-} else if(token){
+} else if(token.id){
     setIsLoggedIn(true)
     getUser(token.id)
 }
@@ -36,30 +36,24 @@ if (!token) {
 
   useEffect(() => {
     const sessionToken = localStorage.getItem("token");
-    console.log(sessionToken);
+   
     if (sessionToken) {
       const decoded = jwtDecode(sessionToken);
       setToken(decoded);
-      console.log(decoded);
+   
     } else {
       setIsLoggedIn(false);
     }
   }, [isLoggedIn]);
 
 
-  useEffect(() => {
-    console.log(isLoggedIn);
-    console.log(token);
-    console.log(activeUser)
-  });
-
   async function getUser(id) {
     try {
       const response = await axios.get(
-        `http://localhost:8080/api/v1/users/${id}`
+        `https://rebound-shoes-api.adaptable.app/api/v1/users/${id}`
       );
       let data = response.data.data;
-      console.log(data);
+      
       setActiveUser(data);
     } catch (error) {
       console.log(error);

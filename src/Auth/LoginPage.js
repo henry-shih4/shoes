@@ -21,7 +21,6 @@ const [, changeLoggedIn, ] = useContext(LoginContext);
         password,
       });
       // Handle successful login
-      console.log("Login successful:", response.data);
       localStorage.setItem("token", response.data.token);
       
       // Reset the form and error state
@@ -29,16 +28,11 @@ const [, changeLoggedIn, ] = useContext(LoginContext);
       setPassword("");
       setError("");
       changeLoggedIn(true);
-      
+       navigate("/");
     } catch(error){
       console.error("Login failed:", error);
       setError("Invalid username or password");
     }
-    // Reset the form after submission
-    setUsername("");
-    setPassword("");
-    navigate('/')
-    // window.location.reload();
 
   };
 
