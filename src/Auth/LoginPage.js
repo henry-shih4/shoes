@@ -1,4 +1,4 @@
-import React, { useState , useEffect, useContext} from "react";
+import React, { useState , useContext} from "react";
 import axios from "axios";
 import { LoginContext } from "../Context/LoginContext";
 import {useNavigate} from "react-router-dom";
@@ -8,7 +8,7 @@ export default function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
  const [error, setError] = useState("");
-const [activeUser, changeLoggedIn, isLoggedIn] = useContext(LoginContext);
+const [, changeLoggedIn, ] = useContext(LoginContext);
  const navigate = useNavigate();
 
   // Function to handle form submission
@@ -76,6 +76,7 @@ const [activeUser, changeLoggedIn, isLoggedIn] = useContext(LoginContext);
       <div>
         Not a user yet? <a href="/register">Register</a>
       </div>
+      {error && <div style={{ color: "red" }}>{error}</div>}
     </div>
   );
 };

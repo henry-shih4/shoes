@@ -105,6 +105,7 @@ export default function LoginPage() {
       <div>
         Already a user? <a href="/login">Login here</a>
       </div>
+      {error && <div style={{ color: "red" }}>{error}</div>}
     </div>
   );
 }

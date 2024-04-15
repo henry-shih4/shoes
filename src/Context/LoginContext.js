@@ -7,7 +7,6 @@ function LoginProvider(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   //   const [isAdmin, setIsAdmin = useState(false);
   const [activeUser, setActiveUser] = useState({ });
-  const [error, setError] = useState("");
   const [token, setToken] = useState({});
 
   useEffect(() => {
