@@ -15,18 +15,13 @@ export default function Orders() {
   },[token]);
 
 
-
-
-  // const url = "https://rebound-shoes-api.adaptable.app/";
-
-
   
   const getOrders = useCallback(async () => {
 
     
     const userOrders = await axios
       .get(
-        `"https://rebound-shoes-api.adaptable.app/orders/${activeUser._id}`,
+        `https://rebound-shoes-api.adaptable.app/api/v1/orders/${activeUser._id}`,
         {
           headers,
         }

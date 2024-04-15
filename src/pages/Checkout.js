@@ -65,7 +65,7 @@ export default function Checkout() {
     async function addOrder(items) {
       try {
         const response = await axios.post(
-          'https://rebound-shoes-api.adaptable.app/orders',
+          "https://rebound-shoes-api.adaptable.app/api/v1/orders",
           {
             products: items,
             user: activeUser._id,
