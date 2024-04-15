@@ -1,15 +1,88 @@
-import React  from 'react'
-import { useContext } from "react";
-import { LoginContext } from  '../Context/LoginContext';
-
-
+import React from "react";
+import { useContext, useEffect, useState } from "react";
+import { LoginContext } from "../Context/LoginContext";
+import { ShoesContext } from "../components/ShoesContext";
+import axios from "axios";
 
 export default function Orders() {
-const [activeUser] =
-  useContext(LoginContext);
+  const [activeUser] = useContext(LoginContext);
+  const [orders, setOrders] = useState([]);
+  const [, url] = useContext(ShoesContext);
+
+  let token = localStorage.getItem("token");
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+  };
+
+  // const url = "https://rebound-shoes-api.adaptable.app/";
+
+  const getOrders = async () => {
+    const userOrders = await axios
+      .get(
+        `"https://rebound-shoes-api.adaptable.app/orders/${activeUser._id}`,
+        {
+          headers,
+        }
+      )
+      .catch((error) => {
+        console.log(error);
+        return error;
+      });
+    console.log(userOrders);
+    setOrders(userOrders.data.data);
+  };
+
+  useEffect(() => {
+    if (activeUser._id){
+    getOrders();
+    }
+  }, [activeUser]);
 
   return (
-    <div className='pt-40'>Orders for {activeUser.username} </div>
-    
-  )
+    <>
+      {!activeUser.username ?         <h1 className="pt-40 flex justify-center items-center">
+          Login to see your orders
+        </h1> : orders?(
+        <div className="pt-40 flex justify-center items-center flex-col">
+          <h1 className="pb-24">Orders for {activeUser.username}</h1>
+          <div className="flex justify-center items-center flex-col gap-y-10">
+            {orders.map((order) => (
+              <div
+                className="flex justify-center items-start flex-col"
+                key={order._id}
+              >
+                <h3>Order Number: {order._id}</h3>
+                <div className="flex justify-start flex-col">
+                  <h3>Items in Order</h3>
+                  <div className='flex'>
+                  {order.products.map((product) => {
+                    return (
+                      <div>
+                        <div className="flex flex-col gap-y-2">
+                          {product.name}-{product.color}
+                        </div>
+
+                        <img
+                          className={" w-[100px] rounded-xl"}
+                          alt={`shoe-${product.name}-${product.color}`}
+                          crossorigin="anonymous"
+                          src={product.image}
+                        />
+                        <p>Quantity: {product.quantity}</p>
+
+                        <p>Price: ${product.price}</p>
+                      </div>
+                    );
+                  })}
+                  </div>
+                </div>
+                <h3>Total order cost: ${order.totalPrice}</h3>
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : null}
+    </>
+  );
 }

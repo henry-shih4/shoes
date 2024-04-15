@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 const CartContext = createContext();
 
@@ -10,13 +10,13 @@ function CartProvider(props) {
 
   function addItemToCart(product) {
     let exist = cartItems.find(
-      (item) => item.variation === product.variation && item.id === product.id
+      (item) => item.color === product.color && item.id === product.id
     );
     if (exist) {
-      console.log(exist.variation);
+      console.log(exist.color);
       setCartItems(
         cartItems.map((item) =>
-          item.variation === product.variation && item.id === product.id
+          item.color === product.color && item.id === product.id
             ? {
                 ...exist,
                 quantity: exist.quantity + product.quantity,
@@ -58,6 +58,10 @@ function CartProvider(props) {
   function clearCart() {
     setCartItems([]);
   }
+
+  useEffect(()=>{
+    console.log(cartItems)
+  },[cartItems])
 
   return (
     <CartContext.Provider

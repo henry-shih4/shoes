@@ -5,46 +5,53 @@ const LoginContext = createContext();
 
 function LoginProvider(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-//   const [isAdmin, setIsAdmin = useState(false);
-  const [activeUser, setActiveUser] = useState({ user: "guest", id: "none" });
-const [error, setError] = useState("");
-const [token, setToken] = useState({});
- 
-
-    // useEffect(() => {
-    //   if (token) {
-    //     changeLoggedIn(true);
-    //   } else if (!token) {
-    //     changeLoggedIn(false);
-    //   }
-    // }, [token, changeLoggedIn]);
-
-  //   useEffect(() => {
-  //     setActiveUser(parseJwt(token));
-  //   }, [token]);
-
-    function changeLoggedIn(value) {
-      if (value === false) {
-        sessionStorage.remove("token", { path: "/login" });
-      } else {
-        setIsLoggedIn(value);
-      }
-    }
-
+  //   const [isAdmin, setIsAdmin = useState(false);
+  const [activeUser, setActiveUser] = useState({ });
+  const [error, setError] = useState("");
+  const [token, setToken] = useState({});
 
   useEffect(() => {
-    const sessionToken = sessionStorage.getItem("token");
-    const decoded = jwtDecode(sessionToken);
-    setToken(decoded);
-    console.log(decoded);
-  }, []);
-
-  useEffect(() => {
-    getUser(token.id);
+if (!token) {
+  setIsLoggedIn(false);
+} else if(token){
+    setIsLoggedIn(true)
+    getUser(token.id)
+}
   }, [token]);
 
+  function handleLogout(){
+    
+        changeLoggedIn(false);
+        setActiveUser({})
+        window.location.reload();
+    
+  }
+
+  function changeLoggedIn(value) {
+    if (value === false) {
+      localStorage.removeItem("token", { path: "/login" });
+    } else {
+      setIsLoggedIn(value);
+    }
+  }
+
   useEffect(() => {
-    console.log(activeUser);
+    const sessionToken = localStorage.getItem("token");
+    console.log(sessionToken);
+    if (sessionToken) {
+      const decoded = jwtDecode(sessionToken);
+      setToken(decoded);
+      console.log(decoded);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, [isLoggedIn]);
+
+
+  useEffect(() => {
+    console.log(isLoggedIn);
+    console.log(token);
+    console.log(activeUser)
   });
 
   async function getUser(id) {
@@ -61,9 +68,7 @@ const [token, setToken] = useState({});
   }
 
   return (
-    <LoginContext.Provider
-      value={[activeUser, changeLoggedIn, isLoggedIn]}
-    >
+    <LoginContext.Provider value={[activeUser, changeLoggedIn, isLoggedIn, handleLogout]}>
       {props.children}
     </LoginContext.Provider>
   );

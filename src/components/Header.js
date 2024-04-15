@@ -10,7 +10,7 @@ export default function Header() {
     useContext(CartContext);
   const [totalQuantity, setTotalQuantity] = useState(0);
   const navigate = useNavigate();
-const [isLoggedIn] = useContext(LoginContext);
+  const [, , isLoggedIn, handleLogout] = useContext(LoginContext);
 
   useEffect(() => {
     let numItems = cartItems
@@ -18,6 +18,12 @@ const [isLoggedIn] = useContext(LoginContext);
       .reduce((sum, currentValue) => sum + currentValue, 0);
     setTotalQuantity(numItems);
   }, [cartItems]);
+
+
+  // useEffect(() => {
+  //   console.log(isLoggedIn);
+  //   console.log(activeUser);
+  // });
 
   return (
     <>
@@ -58,14 +64,6 @@ const [isLoggedIn] = useContext(LoginContext);
               }}
             >
               Collections
-            </li>
-            <li
-              onClick={() => {
-                navigate("/login");
-                setShowNav(false);
-              }}
-            >
-              Login
             </li>
           </ul>
         </div>
@@ -119,15 +117,6 @@ const [isLoggedIn] = useContext(LoginContext);
                 >
                   Collections
                 </li>
-                {!isLoggedIn?
-                <li
-                  onClick={() => {
-                    navigate("/login");
-                    setShowNav(false);
-                  }}
-                >
-                  Login
-                </li>:null}
                 <li
                   onClick={() => {
                     navigate("/orders");
@@ -136,6 +125,18 @@ const [isLoggedIn] = useContext(LoginContext);
                 >
                   Orders
                 </li>
+                {isLoggedIn ? (
+                  <li onClick={handleLogout}>Logout</li>
+                ) : (
+                  <li
+                    onClick={() => {
+                      navigate("/login");
+                      setShowNav(false);
+                    }}
+                  >
+                    Login
+                  </li>
+                )}
               </ul>
             </div>
           </div>

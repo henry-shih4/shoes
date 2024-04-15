@@ -1,32 +1,35 @@
-import React, { useState , useContext} from "react";
+import React, { useState , useEffect, useContext} from "react";
 import axios from "axios";
 import { LoginContext } from "../Context/LoginContext";
-
+import {useNavigate} from "react-router-dom";
 
 export default function LoginPage() {
   // State variables to store user input
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
  const [error, setError] = useState("");
-const [activeUser, isLoggedIn, changeLoggedIn] = useContext(LoginContext);
+const [activeUser, changeLoggedIn, isLoggedIn] = useContext(LoginContext);
+ const navigate = useNavigate();
 
   // Function to handle form submission
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try{
       // Here you can add your logic to handle the login process, like sending the data to a server for authentication
-      const response = await axios.post("http://localhost:8080/api/v1/login", {
+      const response = await axios.post("https://rebound-shoes-api.adaptable.app/login", {
         username,
         password,
       });
       // Handle successful login
       console.log("Login successful:", response.data);
-      sessionStorage.setItem("token", response.data.token);
-      changeLoggedIn(true)
+      localStorage.setItem("token", response.data.token);
+      
       // Reset the form and error state
       setUsername("");
       setPassword("");
       setError("");
+      changeLoggedIn(true);
+      
     } catch(error){
       console.error("Login failed:", error);
       setError("Invalid username or password");
@@ -34,9 +37,10 @@ const [activeUser, isLoggedIn, changeLoggedIn] = useContext(LoginContext);
     // Reset the form after submission
     setUsername("");
     setPassword("");
+    navigate('/')
+    // window.location.reload();
+
   };
-
-
 
 
   return (

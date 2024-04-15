@@ -20,7 +20,7 @@ export default function LoginPage() {
     try {
       // Here you can add your logic to handle the login process, like sending the data to a server for authentication
       const response = await axios.post(
-        "http://localhost:8080/api/v1/register",
+        "https://rebound-shoes-api.adaptable.app/register",
         {
           username,
           email,

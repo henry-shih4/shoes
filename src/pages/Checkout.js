@@ -1,7 +1,9 @@
 import { useContext, useEffect, useState, useCallback } from "react";
 import { CartContext } from "../components/CartContext";
+import { LoginContext } from "../Context/LoginContext";
 import Lottie from "react-lottie-player";
 import lottieJson from "../check.json";
+import axios from 'axios'
 
 export default function Checkout() {
   const [
@@ -16,6 +18,7 @@ export default function Checkout() {
     clearCart,
   ] = useContext(CartContext);
 
+  const [activeUser,,] = useContext(LoginContext);
   const [card, setCard] = useState("");
   const [cardCompany, setCardCompany] = useState();
   const [name, setName] = useState("");
@@ -30,6 +33,12 @@ export default function Checkout() {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [zipcode, setZipcode] = useState("");
+
+  let token = localStorage.getItem("token");
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+  };
 
   useEffect(() => {
     getTotalCost();
@@ -53,6 +62,24 @@ export default function Checkout() {
     validateCardNo(card);
   }, [card, validateCardNo]);
 
+    async function addOrder(items) {
+      try {
+        const response = await axios.post(
+          'https://rebound-shoes-api.adaptable.app/orders',
+          {
+            products: items,
+            user: activeUser._id,
+            totalPrice: totalCost,
+          },
+          { headers }
+        );
+       console.log("Order successful:", response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  
+
   function handleCheckoutSubmit(e) {
     e.preventDefault();
     if (cartItems.length < 1) {
@@ -65,6 +92,7 @@ export default function Checkout() {
     ) {
       setErrorMsg("invalid card, please try again");
     } else {
+      addOrder(cartItems);
       setShowCheckoutSuccessModal(true);
       clearCart();
       setName("");

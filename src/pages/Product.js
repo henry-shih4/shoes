@@ -220,9 +220,9 @@ export default function ProductDisplay() {
                       onClick={() => {
                         if (quantity > 0) {
                           addItemToCart({
+                            _id: currentShoe._id,
                             name: currentShoe.name,
-                            id: currentShoe._id,
-                            variation: activeImage,
+                            color: currentShoe[`color${activeImage}`].color,
                             image:
                               url + currentShoe[`color${activeImage}`].image,
                             quantity: quantity,
