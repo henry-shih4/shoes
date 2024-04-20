@@ -306,6 +306,7 @@ export default function Checkout() {
                     </div>
                   </label>
                   <input
+                    placeholder="4242 4242 4242 4242"
                     maxLength={16}
                     required
                     type="text"

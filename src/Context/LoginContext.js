@@ -10,7 +10,8 @@ function LoginProvider(props) {
   const [token, setToken] = useState({});
 
   useEffect(() => {
-if (!token) {
+
+if (!token || token.exp < Date.now() / 1000) {
   setIsLoggedIn(false);
 } else if(token.id){
     setIsLoggedIn(true)
@@ -45,7 +46,6 @@ if (!token) {
       setIsLoggedIn(false);
     }
   }, [isLoggedIn]);
-
 
   async function getUser(id) {
     try {

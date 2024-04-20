@@ -10,7 +10,7 @@ export default function Header() {
     useContext(CartContext);
   const [totalQuantity, setTotalQuantity] = useState(0);
   const navigate = useNavigate();
-  const [, , isLoggedIn, handleLogout] = useContext(LoginContext);
+  const [activeUser, , isLoggedIn, handleLogout] = useContext(LoginContext);
 
   useEffect(() => {
     let numItems = cartItems
@@ -18,7 +18,6 @@ export default function Header() {
       .reduce((sum, currentValue) => sum + currentValue, 0);
     setTotalQuantity(numItems);
   }, [cartItems]);
-
 
   // useEffect(() => {
   //   console.log(isLoggedIn);
@@ -188,13 +187,7 @@ export default function Header() {
                 </div>
               </div>
             </div>
-            <div>
-              <img
-                alt="avatar-icon"
-                className="min-h-[36px] h-[36px] w-[36px] min-w-[36px]"
-                src="/images/image-avatar.png"
-              />
-            </div>
+            {isLoggedIn ? <div>Welcome {activeUser.username}</div> : null}
             <div
               className={
                 showCart
